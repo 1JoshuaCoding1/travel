@@ -1,1 +1,18 @@
-<p>booked-flights works!</p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Flight ID</th>
+      <th scope="col">Destination</th>
+      <th scope="col">From</th>
+      <th scope="col">Departure</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let flight of flights">
+      <td>{{ flight.id }}</td>
+      <td>{{ flight.destination }}</td>
+      <td>{{ flight.departure }}</td>
+      <td>{{ flight.price }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,1 +1,17 @@
-<p>add-flights works!</p>
+
+
+<form (ngSubmit)="addFlights(destination.value, departure.value, price.value)">
+  <div class="mb-3">
+    <label for="destination" class="form-label">Destination</label>
+    <input type="text" class="form-control" id="destination" #destination required>
+  </div>
+  <div class="mb-3">
+    <label for="departure" class="form-label">Departure</label>
+    <input type="text" class="form-control" id="departure" #departure required>
+  </div>
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <input type="text" class="form-control" id="price" #price required>
+  </div>
+  <button type="submit" class="btn btn-primary">Add Flight</button>
+</form>
