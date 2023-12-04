@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "airline-reservation-syst-dc909": {
+      "hosting": {
+        "travel": [
+          "airline-reservation-syst-dc909"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "airline-reservation-syst-dc909"
+  }
+}
