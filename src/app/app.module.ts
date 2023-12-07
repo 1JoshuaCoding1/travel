@@ -1,16 +1,18 @@
 // Angular modules
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-// Firebase modules
 
+// Firebase modules
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { Auth, provideAuth, getAuth } from '@angular/fire/auth';
 import { Firestore, provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { Database, provideDatabase, getDatabase } from '@angular/fire/database';
+
+
 
 // Other modules
 import { AppRoutingModule } from './app-routing.module';
@@ -35,13 +37,10 @@ import { environment } from 'src/environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    provideDatabase(() => getDatabase()),
     FormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),AngularFireAuthModule
   ],
-  providers: [],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
