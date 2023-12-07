@@ -14,25 +14,29 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore,Firestore } from '@angular/fire/firestore';
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
+import { LoginComponent } from "./login/login.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SidebarComponent,
-    AddFlightsComponent,
-    UsersComponent,
-    BookedFlightsComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    provideDatabase(() => getDatabase()),FormsModule,
-   
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        SidebarComponent,
+        AddFlightsComponent,
+        UsersComponent,
+        BookedFlightsComponent,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
+        provideDatabase(() => getDatabase()), FormsModule,
+        LoginComponent
+    ],
+    exports:[
+      LoginComponent
+    ]
 })
 export class AppModule { }
