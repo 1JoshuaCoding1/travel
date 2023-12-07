@@ -33,10 +33,10 @@ import { LoginComponent } from "./login/login.component";
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
         provideDatabase(() => getDatabase()), FormsModule,
-        LoginComponent
+
     ],
     exports:[
-      LoginComponent
+
     ]
 })
 export class AppModule { }
