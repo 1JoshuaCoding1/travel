@@ -15,6 +15,12 @@ import { getFirestore, provideFirestore,Firestore } from '@angular/fire/firestor
 import { getDatabase, provideDatabase } from '@angular/fire/database';
 import { environment } from 'src/environments/environment';
 import { LoginComponent } from "./login/login.component";
+import { NavbarComponent } from "./navbar/navbar.component";
+import { FooterComponent } from "./footer/footer.component";
+import { SearchFlightsComponent } from "./search-flights/search-flights.component";
+import { CardsComponent } from "./cards/cards.component";
+import { MapComponent } from "./map/map.component";
+import { CarouselComponent } from "./carousel/carousel.component";
 
 @NgModule({
     declarations: [
@@ -34,7 +40,13 @@ import { LoginComponent } from "./login/login.component";
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
         provideDatabase(() => getDatabase()), FormsModule,
-        LoginComponent
+        LoginComponent,
+        NavbarComponent,
+        FooterComponent,
+        SearchFlightsComponent,
+        CardsComponent,
+        MapComponent,
+        CarouselComponent
     ]
 })
 export class AppModule { }

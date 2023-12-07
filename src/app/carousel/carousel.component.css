@@ -1,0 +1,42 @@
+h1,
+h2 {
+    font-family: "Comfortaa-Regular";
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    font-size: 24px;
+    color: #908F9A;
+}
+
+h5 {
+    font-size: 32px;
+}
+
+p {
+    font-size: 24px;
+}
+
+h5,
+p {
+    font-family: "Moul-Regular";
+    color: white;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.carousel-item img {
+    height: 30%;
+    width: 60%;
+    object-fit: cover;
+}
+
+#carouselExampleDark {
+    height: 30%;
+    width: 95%;
+}
