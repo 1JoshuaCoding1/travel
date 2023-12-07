@@ -1,0 +1,159 @@
+* {
+    font-family: Comfortaa-Regular;
+}
+
+.backgroundimage {
+    background-image: url('/assets/Images/Background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 583px;
+    padding: 100px;
+}
+
+h1 {
+    font-family: 'Moul-Regular';
+    font-size: 48px;
+    color: #254E58;
+    vertical-align: middle;
+}
+
+h2 {
+    font-family: 'Comfortaa-Regular';
+    font-size: 24px;
+    color: #254E58;
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+
+
+
+.textInput {
+    display: flex;
+}
+
+.from-icon {
+    background-image: url("/assets/Icons/Globe.png");
+}
+
+#searchContainer {
+    border-radius: 15px;
+    border-style: solid;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 19px;
+    align-self: center;
+}
+
+.button {
+
+    align-self: center;
+}
+
+
+.form-select {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 16px;
+    color: black;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.form-select:hover {
+    background-color: #f8f9fa;
+}
+
+.form-select option {
+    padding: 5px 10px;
+    background-color: transparent;
+    color: #6c757d;
+}
+
+.input-group {
+    height: 75px;
+    background-color: #EDEDED;
+}
+
+.input-group-text+input,
+span {
+    background-color: #EDEDED;
+    border-radius: 15px;
+}
+
+.return-date-container {
+    display: none;
+}
+
+.form-floating>.form-control,
+.form-floating>.form-control-plaintext,
+.form-floating>.form-select {
+    background-color: #EDEDED;
+    width: 90%;
+    height: 100%;
+}
+
+.input-group input {
+    border: none;
+    width: 81%;
+
+}
+
+.dropdown-menu {
+    width: 100%;
+}
+
+#passengersColumn .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Style for the dropdown button */
+#passengersColumn .dropdown button {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    font-size: 16px;
+    color: black;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#passengersColumn .dropdown button:hover {
+    background-color: #f8f9fa;
+}
+
+/* Style for the dropdown menu */
+#passengersColumn .dropdown-menu {
+    padding: 15px;
+    /* Adjust as needed */
+}
+
+/* Style for labels in the dropdown menu */
+#passengersColumn .dropdown-menu label {
+    font-weight: bold;
+    color: #6c757d;
+}
+
+/* Style for the number display in the dropdown menu */
+#passengersColumn .dropdown-menu h4 {
+    margin: 0;
+}
+
+/* Style for the increase and decrease buttons in the dropdown menu */
+#passengersColumn .dropdown-menu .btn-outline-secondary {
+    background-color: transparent;
+    color: #6c757d;
+    border: none;
+    margin: 0 5px;
+}
+
+#passengersColumn .dropdown-menu .btn-outline-secondary:hover {
+    background-color: #f8f9fa;
+}

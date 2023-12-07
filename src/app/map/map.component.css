@@ -1,0 +1,17 @@
+.map{
+height: 310px;
+width: 95%;
+}
+.container{
+    margin-top: 50px;
+}
+h1, h2{
+    font-family: "Comfortaa-Regular";
+    }
+    h1{
+      font-size: 32;
+    }
+    h2{
+      font-size: 24;
+      color: #908F9A;
+    }
