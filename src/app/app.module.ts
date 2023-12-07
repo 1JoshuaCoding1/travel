@@ -21,6 +21,7 @@ import { SearchFlightsComponent } from "./search-flights/search-flights.componen
 import { CardsComponent } from "./cards/cards.component";
 import { MapComponent } from "./map/map.component";
 import { CarouselComponent } from "./carousel/carousel.component";
+import { ViewFlightsComponent } from "./view-flights/view-flights.component";
 
 @NgModule({
     declarations: [
@@ -46,7 +47,8 @@ import { CarouselComponent } from "./carousel/carousel.component";
         SearchFlightsComponent,
         CardsComponent,
         MapComponent,
-        CarouselComponent
+        CarouselComponent,
+        ViewFlightsComponent
     ]
 })
 export class AppModule { }
