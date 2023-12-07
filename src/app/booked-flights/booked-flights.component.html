@@ -3,8 +3,9 @@
     <tr>
       <th scope="col">Flight ID</th>
       <th scope="col">Destination</th>
-      <th scope="col">From</th>
       <th scope="col">Departure</th>
+      <th scope="col">Price</th>
+      <th scope="col">Actions</th> 
     </tr>
   </thead>
   <tbody>
@@ -13,6 +14,9 @@
       <td>{{ flight.destination }}</td>
       <td>{{ flight.departure }}</td>
       <td>{{ flight.price }}</td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteFlight(flight.id)">Delete</button>
+      </td>
     </tr>
   </tbody>
 </table>

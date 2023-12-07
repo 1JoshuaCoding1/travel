@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Firestore, collection, addDoc,getDocs  } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, getDocs, doc, deleteDoc } from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'app-add-flights',
@@ -7,7 +8,10 @@ import { Firestore, collection, addDoc,getDocs  } from '@angular/fire/firestore'
   styleUrls: ['./add-flights.component.css']
 })
 export class AddFlightsComponent {
-  
+  destination: string = '';
+  departure: string = '';
+  price: string = '';
+
   constructor(private fs: Firestore) {}
 
   async addFlights(destination: string, departure: string, price: string) {
@@ -21,17 +25,17 @@ export class AddFlightsComponent {
       const flightsCollection = collection(this.fs, 'flights');
       await addDoc(flightsCollection, flightData);
       console.log('Flight added successfully');
+      this.clearForm(); // Clear the form fields after successful submission
     } catch (error) {
       console.error('Flight addition error:', error);
     }
   }
 
-  onSubmit(destination: string, departure: string, price: string) {
-    // Call your addFlights method when the form is submitted
-    this.addFlights(destination, departure, price);
+  clearForm() {
+    this.destination = '';
+    this.departure = '';
+    this.price = '';
   }
-
-// view flights
 
   flights: any[] = [];
 
@@ -43,10 +47,27 @@ export class AddFlightsComponent {
   async getFlights() {
     const flightsCollection = collection(this.fs, 'flights');
     const querySnapshot = await getDocs(flightsCollection);
-    
+  
     this.flights = [];
     querySnapshot.forEach((doc) => {
-      this.flights.push(doc.data());
+      const flightData = { id: doc.id, ...doc.data() };
+      console.log('Flight Data:', flightData);
+      this.flights.push(flightData);
     });
   }
+// flights
+
+  async deleteFlight(flightId: string) {
+    const flightDoc = doc(this.fs, 'flights', flightId);
+
+    try {
+      await deleteDoc(flightDoc);
+      console.log('Flight deleted successfully');
+      this.getFlights(); // Refresh the flights data after deletion
+    } catch (error) {
+      console.error('Flight deletion error:', error);
+    }
+  }
+
+
 }

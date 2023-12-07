@@ -1,17 +1,38 @@
-
-
-<form (ngSubmit)="addFlights(destination.value, departure.value, price.value)">
+<form (ngSubmit)="addFlights(destination, departure, price)">
   <div class="mb-3">
     <label for="destination" class="form-label">Destination</label>
-    <input type="text" class="form-control" id="destination" #destination required>
+    <input type="text" class="form-control" id="destination" name="destination" [(ngModel)]="destination" required>
   </div>
   <div class="mb-3">
     <label for="departure" class="form-label">Departure</label>
-    <input type="text" class="form-control" id="departure" #departure required>
+    <input type="text" class="form-control" id="departure" name="departure" [(ngModel)]="departure" required>
   </div>
   <div class="mb-3">
     <label for="price" class="form-label">Price</label>
-    <input type="text" class="form-control" id="price" #price required>
+    <input type="text" class="form-control" id="price" name="price" [(ngModel)]="price" required>
   </div>
   <button type="submit" class="btn btn-primary">Add Flight</button>
 </form>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Flight ID</th>
+      <th scope="col">Destination</th>
+      <th scope="col">Departure</th>
+      <th scope="col">Price</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let flight of flights">
+      <td>{{ flight.id }}</td>
+      <td>{{ flight.destination }}</td>
+      <td>{{ flight.departure }}</td>
+      <td>{{ flight.price }}</td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteFlight(flight.id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
