@@ -1,32 +1,22 @@
-
 <div>
+  <div class="topnav shadow p-1">
+    <div class="header">
+      <div class="logo">TRAVELPORT</div>
 
-    <div class="topnav shadow p-1">
-      <div class="header">
-        <div class="logo">Logo</div>
-        
-      
+      <div class="flex-grow-1"></div>
+
       <router-outlet></router-outlet>
-      </div>
-  
+    </div>
   </div>
-  
-  
-  
-  <div  class="sidebar shadow p-2"  id="sidebar"  >
-    <ul>
 
-        <li><a routerLink="/add-flights"><i class="bi bi-plus-circle"></i> add-flights</a></li>
-        
-        <li><a routerLink="/booked-flights"><i class="bi bi-airplane"></i> view-flights</a></li>
-        <li><a routerLink="/users"><i class="bi bi-person-gear"></i>Users</a></li>
-  
-        <li><a routerLink="/logout"><i class="bi bi-box-arrow-left"></i> Logout</a></li>
-  
-    </ul>
+  <div class="sidebar shadow p-2" id="sidebar">
+    <a routerLink="/add-flights" class="hover-link"><i class="bi bi-plus-circle"></i> add-flights</a>
+    <a routerLink="/booked-flights" class="hover-link"><i class="bi bi-airplane"></i> booked-flights</a>
+    <a routerLink="/users" class="hover-link"><i class="bi bi-person-gear"></i> Users</a>
+    <a routerLink="/logout" class="hover-link"><i class="bi bi-box-arrow-left"></i> Logout</a>
   </div>
-  <div class="main-content" >
+
+  <div class="main-content">
     <router-outlet></router-outlet>
   </div>
-  
-  </div>
+</div>
