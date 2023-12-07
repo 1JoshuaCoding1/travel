@@ -26,6 +26,7 @@ import { LoginComponent } from "./login/login.component";
     ],
     providers: [],
     bootstrap: [AppComponent],
+    exports: [],
     imports: [
         BrowserModule,
         AppRoutingModule,
@@ -33,10 +34,7 @@ import { LoginComponent } from "./login/login.component";
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
         provideDatabase(() => getDatabase()), FormsModule,
-
-    ],
-    exports:[
-
+        LoginComponent
     ]
 })
 export class AppModule { }
