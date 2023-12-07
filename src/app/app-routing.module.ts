@@ -5,6 +5,7 @@ import { AddFlightsComponent } from './add-flights/add-flights.component';
 import { UsersComponent } from './users/users.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'booked-flights', component: BookedFlightsComponent },
   { path: 'add-flights', component: AddFlightsComponent},
   {path:'login', component:LoginComponent},
+  {path:'register', component:RegisterComponent},
   
 
   

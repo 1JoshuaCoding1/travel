@@ -7,6 +7,7 @@ import { AddFlightsComponent } from './add-flights/add-flights.component';
 import { UsersComponent } from './users/users.component';
 import { BookedFlightsComponent } from './booked-flights/booked-flights.component';
 import { FormsModule } from '@angular/forms';
+
 // firebase
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';

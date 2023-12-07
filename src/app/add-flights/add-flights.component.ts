@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Firestore, collection, addDoc, getDocs, doc, deleteDoc } from '@angular/fire/firestore';
-
 
 @Component({
   selector: 'app-add-flights',
@@ -14,6 +14,15 @@ export class AddFlightsComponent {
 
   constructor(private fs: Firestore) {}
 
+ 
+  onSubmit(flightForm: NgForm) {
+    if (flightForm.invalid) {
+      alert('Please fill in all fields before submitting the form.');
+      return;
+    }
+
+    this.addFlights(this.destination, this.departure, this.price);
+  }
   async addFlights(destination: string, departure: string, price: string) {
     const flightData = {
       destination,
@@ -39,7 +48,6 @@ export class AddFlightsComponent {
 
   flights: any[] = [];
 
-
   ngOnInit() {
     this.getFlights();
   }
@@ -55,7 +63,6 @@ export class AddFlightsComponent {
       this.flights.push(flightData);
     });
   }
-// flights
 
   async deleteFlight(flightId: string) {
     const flightDoc = doc(this.fs, 'flights', flightId);
@@ -68,6 +75,4 @@ export class AddFlightsComponent {
       console.error('Flight deletion error:', error);
     }
   }
-
-
 }
