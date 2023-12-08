@@ -1,8 +1,6 @@
-// Angular modules
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Injector, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
 
 // Firebase modules
 import { AngularFireModule } from '@angular/fire/compat';
@@ -12,19 +10,20 @@ import { Auth, provideAuth, getAuth } from '@angular/fire/auth';
 import { Firestore, provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { Database, provideDatabase, getDatabase } from '@angular/fire/database';
 
-
-
-// Other modules
+import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AddFlightsComponent } from './add-flights/add-flights.component';
 import { UsersComponent } from './users/users.component';
 import { BookedFlightsComponent } from './booked-flights/booked-flights.component';
-
-import { environment } from 'src/environments/environment';
-
-
+import { LoginComponent } from './login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { FooterComponent } from './footer/footer.component';
+import { SearchFlightsComponent } from './search-flights/search-flights.component';
+import { CardsComponent } from './cards/cards.component';
+import { MapComponent } from './map/map.component';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -32,15 +31,23 @@ import { environment } from 'src/environments/environment';
     SidebarComponent,
     AddFlightsComponent,
     UsersComponent,
-    BookedFlightsComponent
+    BookedFlightsComponent,
+    LoginComponent,
+    NavbarComponent,
+    FooterComponent,
+    SearchFlightsComponent,
+    CardsComponent,
+    MapComponent,
+    CarouselComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),AngularFireAuthModule
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule
   ],
-  providers: [ ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

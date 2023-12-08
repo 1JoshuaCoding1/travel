@@ -1,0 +1,54 @@
+.card-title {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: RobotoCondensed-BlackItalic;
+    
+  }
+.container{
+  margin-top: 50px;
+}
+
+.card{
+  border-radius: 10px;
+  filter:drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
+  height: 389px;
+  width: 234px;
+}
+
+#card-1{
+  background-image:url( "/assets/Images/EiffelTower.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+#card-2{
+  background-image:url( "/assets/Images/Matterhorn.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+#card-3{
+  background-image:url( "/assets/Images/Pyramid.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+#card-4{
+  background-image:url( "/assets/Images/GrandCanyon.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+h1, h2{
+font-family: "Comfortaa-Regular";
+}
+h1{
+  font-size: 32;
+}
+h2{
+  font-size: 24;
+  color: #908F9A;
+}
