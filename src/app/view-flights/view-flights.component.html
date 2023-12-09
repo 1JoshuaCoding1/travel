@@ -2,24 +2,22 @@
   <h1>Available Flights</h1>
   <h2>Cebu to Manila</h2>
   <div class="row">
-    <div class="col">
+    <div class="col-sm-3">
       <div class="text-center">
         <h3>Airline</h3>
       </div>
     </div>
-    <div class="col">
+    <div class="col-sm-2">
       <h3>Time Of Departure</h3>
     </div>
-    <div class="col">
+    <div class="col-sm-2">
       <h3>Flight Duration</h3>
     </div>
-    <div class="col">
+    <div class="col-sm-2">
       <h3>Departure Date</h3>
     </div>
-    <div class="col">
-      <div class="text-center">
-        <h3>Price</h3>
-      </div>
+    <div class="col-sm-2 text-center">
+      <h3>Price</h3>
     </div>
   </div>
 
@@ -35,7 +33,7 @@
           aria-controls="flush-collapseOne"
         >
           <div class="row" style="width: 100%">
-            <div class="col">
+            <div class="col-sm-3">
               <div class="row align-items-center">
                 <div class="col-auto">
                   <img src="/assets/viewflights/cebu-pacific.png" alt="" />
@@ -45,19 +43,17 @@
                 </div>
               </div>
             </div>
-            <div class="col">
+            <div class="col-sm-2" id="departureTime">
               <h6>04:30 AM</h6>
             </div>
-            <div class="col">
+            <div class="col-sm-2" id="flightDuration">
               <h6>1hr 30 Mins</h6>
             </div>
-            <div class="col">
+            <div class="col-sm-2" id="Departure Date">
               <h6>November 25, 2023</h6>
             </div>
-            <div class="col">
-              <div class="text-center">
-                <h6>₱ 12,000</h6>
-              </div>
+            <div class="col-sm-3 text-center" id="flightPrice">
+              <h6>₱ 12,000</h6>
             </div>
           </div>
         </button>
@@ -68,9 +64,11 @@
         data-bs-parent="#accordionFlushExample"
       >
         <div class="accordion-body">
-          Placeholder content for this accordion, which is intended to
-          demonstrate the <code>.accordion-flush</code> class. This is the first
-          item's accordion body.
+          <ul class="list-group list-group-horizontal">
+            <li class="list-group-item">Flight Details</li>
+            <li class="list-group-item">Price Details</li>
+          </ul>
+          <hr />
         </div>
       </div>
     </div>

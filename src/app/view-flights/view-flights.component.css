@@ -3,16 +3,8 @@ h3 {
     font-size: 16px;
 }
 
-.accordion-button .row {
-    display: flex;
-    align-items: center;
-}
-
-.accordion-button .col {
-    flex: 1;
-}
-
-.accordion-button .col:first-child {
-    display: flex;
-    align-items: center;
+h6 {
+    font-family: "Comfortaa-Regular";
+    font-size: 15px;
+    padding-right: 10px;
 }
