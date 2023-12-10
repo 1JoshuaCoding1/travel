@@ -34,25 +34,25 @@ export class SearchFlightsComponent {
     
     
 
-      // document.getElementById("btn-increase-children")?.addEventListener("click", function () {
-      //   handleButtonClick("increase", "numChildren");
-      // });
-      // document.getElementById("btn-decrease-children")?.addEventListener("click", function () {
-      //   handleButtonClick("decrease", "numChildren");
-      // });
-      // document.getElementById("btn-increase-toddler")?.addEventListener("click", function () {
-      //   handleButtonClick("increase", "numToddlers");
-      // });
-      // document.getElementById("btn-decrease-toddler")?.addEventListener("click", function () {
-      //   handleButtonClick("decrease", "numToddlers");
-      // });
-      // document.getElementById("btn-increase-adults")?.addEventListener("click", function () {
-      //   handleButtonClick("increase", "numAdults");
-      // });
+      document.getElementById("btn-increase-children")?.addEventListener("click", function () {
+        handleButtonClick("increase", "numChildren");
+      });
+      document.getElementById("btn-decrease-children")?.addEventListener("click", function () {
+        handleButtonClick("decrease", "numChildren");
+      });
+      document.getElementById("btn-increase-toddler")?.addEventListener("click", function () {
+        handleButtonClick("increase", "numToddlers");
+      });
+      document.getElementById("btn-decrease-toddler")?.addEventListener("click", function () {
+        handleButtonClick("decrease", "numToddlers");
+      });
+      document.getElementById("btn-increase-adults")?.addEventListener("click", function () {
+        handleButtonClick("increase", "numAdults");
+      });
       
-      // document.getElementById("btn-decrease-adults")?.addEventListener("click", function () {
-      //   handleButtonClick("decrease", "numAdults");
-      // });
+      document.getElementById("btn-decrease-adults")?.addEventListener("click", function () {
+        handleButtonClick("decrease", "numAdults");
+      });
 
       function toggleReturnDate() {
         if (returnDateInput) {
