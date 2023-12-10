@@ -1,85 +1,73 @@
+// Import the required modules
 import { Component } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AuthService } from '../shared/auth.service';
+import { Subscription } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-search-flights',
   standalone: true,
-  imports: [CommonModule],
+  styleUrls: ['./search-flights.component.css'],
   templateUrl: './search-flights.component.html',
-  styleUrls: ['./search-flights.component.css']
+  imports: [CommonModule, FormsModule],
 })
 export class SearchFlightsComponent {
-  totalPassengers: number = 0;
+  private authSubscription: Subscription | undefined;
 
+  // Properties for two-way binding
+  typeOfFlight: string = '';
+  seatClass: string = '';
+  from: string = '';
+  destination: string = '';
+  departureDate: string = '';
+  returnDate: string = '';
 
-  ngOnInit() {
-    document.addEventListener("DOMContentLoaded", () => {
-      
-      // Get the type of flight and return date input elements
-      const typeFlight = document.getElementById("TypeFlight") as HTMLSelectElement;
-      const returnDateInput = (document.getElementById("returnDate")?.parentNode?.parentNode as HTMLElement) ?? null;
+  constructor(private afs: AngularFirestore, private authService: AuthService) {}
 
-      const handleButtonClick = (action: string, countElementId: string) => {
-        const countElement = document.getElementById(countElementId) as HTMLHeadingElement;
-        let currentValue = parseInt(countElement.innerText);
-  
-        if (action === "increase") {
-          countElement.innerText = (currentValue + 1).toString();
-        } else if (action === "decrease" && currentValue > 0) {
-          countElement.innerText = (currentValue - 1).toString();
-        }
-        this.updateTotalPassengers();
+  ngOnDestroy() {
+    // Unsubscribe when the component is destroyed
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
+  }
+
+  bookFlight() {
+    // Placeholder: In a real app, get the actual user ID based on authentication
+    this.authSubscription = this.authService.getCurrentUser().subscribe((user) => {
+      const userId = user ? user.uid : null;
+
+      if (!userId) {
+        // Handle the case where the user is not authenticated
+        console.error('User not authenticated');
+        return;
+      }
+
+      // Prepare data object
+      const flightData = {
+        typeOfFlight: this.typeOfFlight,
+        seatClass: this.seatClass,
+        from: this.from,
+        destination: this.destination,
+        departureDate: this.departureDate,
+        returnDate: this.returnDate,
       };
 
-    
-    
+      const userDocRef = this.afs.collection('users').doc(userId);
 
-      // document.getElementById("btn-increase-children")?.addEventListener("click", function () {
-      //   handleButtonClick("increase", "numChildren");
-      // });
-      // document.getElementById("btn-decrease-children")?.addEventListener("click", function () {
-      //   handleButtonClick("decrease", "numChildren");
-      // });
-      // document.getElementById("btn-increase-toddler")?.addEventListener("click", function () {
-      //   handleButtonClick("increase", "numToddlers");
-      // });
-      // document.getElementById("btn-decrease-toddler")?.addEventListener("click", function () {
-      //   handleButtonClick("decrease", "numToddlers");
-      // });
-      // document.getElementById("btn-increase-adults")?.addEventListener("click", function () {
-      //   handleButtonClick("increase", "numAdults");
-      // });
-      
-      // document.getElementById("btn-decrease-adults")?.addEventListener("click", function () {
-      //   handleButtonClick("decrease", "numAdults");
-      // });
-
-      function toggleReturnDate() {
-        if (returnDateInput) {
-          returnDateInput.style.display = typeFlight.value === "Round-Trip" ? "block" : "none";
-        }
-        else{
-
-        }
-      }
-    
-
-      toggleReturnDate();
-
-      typeFlight.addEventListener("change", toggleReturnDate);
+      userDocRef
+        .collection('bookedFlights')
+        .add(flightData)
+        .then((docRef: { id: any }) => {
+          console.log('Document written with ID: ', docRef.id);
+          // You can add any further actions here, like showing a success message
+        })
+        .catch((error: any) => {
+          console.error('Error adding document: ', error);
+          // Handle errors here
+        });
     });
   }
- 
-   updateTotalPassengers() {
-    const numAdults = parseInt(document.getElementById("numAdults")?.innerText || "0", 10);
-    const numChildren = parseInt(document.getElementById("numChildren")?.innerText || "0", 10);
-    const numToddlers = parseInt(document.getElementById("numToddlers")?.innerText || "0", 10);
-  
-    this.totalPassengers = numAdults + numChildren + numToddlers;
-  }
-
-
-
-  
 }
-

@@ -1,7 +1,6 @@
-// users.component.ts
+
 import { Component, OnInit } from '@angular/core';
 import { Firestore, collection, getDocs, deleteDoc, doc } from '@angular/fire/firestore';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; // Import NgbModal
 import { Router } from '@angular/router';
 
 
@@ -12,6 +11,8 @@ import { Router } from '@angular/router';
 })
 export class UsersComponent implements OnInit {
   users: any[] = [];
+  selectedUser: any;
+  bookedFlights: any[] = [];
 
   constructor(private fs: Firestore) {}
 
@@ -37,33 +38,35 @@ export class UsersComponent implements OnInit {
     try {
       await deleteDoc(userDoc);
       console.log('User deleted successfully');
-      this.getUsers(); // Refresh the users data after deletion
+      this.getUsers();
     } catch (error) {
       console.error('User deletion error:', error);
     }
   }
 
-
-
-  async refreshTable() {
-    try {
-      // Fetch updated user data
-      await this.getUsers();
-      console.log('Table refreshed successfully');
-    } catch (error) {
-      console.error('Table refresh error:', error);
-    }
+  async viewFlights(user: any) {
+    this.selectedUser = user;
+    const bookedFlightsCollection = collection(this.fs, 'users', user.id, 'bookedFlights');
+    const querySnapshot = await getDocs(bookedFlightsCollection);
+  
+    this.bookedFlights = [];
+    querySnapshot.forEach((doc) => {
+      const flightData = { id: doc.id, ...doc.data() };
+      console.log('Booked Flight Data:', flightData);
+      this.bookedFlights.push(flightData);
+    });
   }
+  
 
-  viewFlights(userId: number,) {
-    // Open a modal to display flight details
-    this.getFlights(userId);
+  
+async refreshTable() {
+  try {
     
-  }
-
-  async getFlights(userId: number) {
-    // Logic to fetch flight details based on userId
-    // Update the flights data in the component for display in the modal
+    await this.getUsers();
+    console.log('Table refreshed successfully');
+  } catch (error) {
+    console.error('Table refresh error:', error);
   }
 }
 
+}

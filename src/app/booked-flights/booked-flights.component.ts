@@ -28,6 +28,8 @@ export class BookedFlightsComponent {
     });
   }
 
+  
+
   async deleteFlight(flightId: string) {
     const flightDoc = doc(this.fs, 'flights', flightId);
 

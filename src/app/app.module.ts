@@ -9,7 +9,6 @@ import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { Auth, provideAuth, getAuth } from '@angular/fire/auth';
 import { Firestore, provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { Database, provideDatabase, getDatabase } from '@angular/fire/database';
-
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,13 +29,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutComponent } from './layout/layout.component';
 
 
+
 @NgModule({
     declarations: [
         AppComponent,
         SidebarComponent,
         AddFlightsComponent,
         UsersComponent,
-        BookedFlightsComponent,RegisterComponent,LoginComponent, LayoutComponent
+        BookedFlightsComponent,RegisterComponent,LoginComponent,
+         LayoutComponent,
+        
      
     ],
     providers: [

@@ -35,7 +35,8 @@ export class AddFlightsComponent {
       const flightsCollection = collection(this.fs, 'flights');
       await addDoc(flightsCollection, flightData);
       console.log('Flight added successfully');
-      this.clearForm(); // Clear the form fields after successful submission
+      this.clearForm(); 
+      this.getFlights();
     } catch (error) {
       console.error('Flight addition error:', error);
     }
