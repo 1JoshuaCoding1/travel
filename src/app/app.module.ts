@@ -53,7 +53,8 @@ import { ViewFlightsComponent } from "./view-flights/view-flights.component";
         MapComponent,
         CarouselComponent,
         ViewFlightsComponent,
-        HomepageComponent
+        HomepageComponent,
+        FooterComponent
     ]
 })
 export class AppModule { }
