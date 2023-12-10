@@ -64,11 +64,92 @@
         data-bs-parent="#accordionFlushExample"
       >
         <div class="accordion-body">
-          <ul class="list-group list-group-horizontal">
-            <li class="list-group-item">Flight Details</li>
-            <li class="list-group-item">Price Details</li>
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                (click)="toggleContainer('flightDetailsContainer')"
+                >Flight Details</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                (click)="toggleContainer('priceDetailsContainer')"
+                >Price Details</a
+              >
+            </li>
           </ul>
-          <hr />
+          <div
+            class="container"
+            *ngIf="showFlightDetails"
+            id="flightDetailsContainer"
+          >
+            <div class="row">
+              <div class="col">
+                <h6>Flight Id: 293222</h6>
+              </div>
+
+              <div class="col" id="Airports">
+                <div class="d-flex flex-row align-items-center">
+                  <h6>Mactan International Airport</h6>
+                  <img
+                    src="/assets/viewflights/arrow.png"
+                    alt=""
+                    style="width: 179px; height: 10px; justify-content: center"
+                  />
+                  <h6>Ninoy Aquino International Airport</h6>
+                </div>
+              </div>
+              <div class="col">
+                <h6>Cabbin Baggage: 6kg</h6>
+                <h6>Baggage: 10kg</h6>
+              </div>
+              <div class="col">
+                <h6>Non-Refundable</h6>
+                <h6>Free Meal & Beverages</h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col text-center">
+                <button type="button" class="btn btn-primary btn-block">
+                  Book Flight
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="container"
+            *ngIf="showPriceDetails"
+            id="priceDetailsContainer"
+          >
+            <div class="row">
+              <div class="row justify-content-between">
+                <div class="col">
+                  <h6>2x Adult</h6>
+                </div>
+                <div class="col text-end">
+                  <h6>₱ 6,000</h6>
+                </div>
+              </div>
+              <div class="row justify-content-between">
+                <div class="col">
+                  <h6>1x Infant</h6>
+                </div>
+                <div class="col text-end">
+                  <h6>₱ 6,000</h6>
+                </div>
+              </div>
+              <hr style="border: dotted" />
+              <div class="row justify-content-between">
+                <div class="text-center">
+                  <h6>Total Price: ₱ 12,000</h6>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
