@@ -24,30 +24,39 @@ import { SearchFlightsComponent } from './search-flights/search-flights.componen
 import { CardsComponent } from './cards/cards.component';
 import { MapComponent } from './map/map.component';
 import { CarouselComponent } from './carousel/carousel.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { RegisterComponent } from './register/register.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SidebarComponent,
-    AddFlightsComponent,
-    UsersComponent,
-    BookedFlightsComponent,
-    LoginComponent,
-    NavbarComponent,
-    FooterComponent,
-    SearchFlightsComponent,
-    CardsComponent,
-    MapComponent,
-    CarouselComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        SidebarComponent,
+        AddFlightsComponent,
+        UsersComponent,
+        BookedFlightsComponent,RegisterComponent,LoginComponent
+     
+    ],
+    providers: [
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig), 
+        provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
+        provideDatabase(() => getDatabase()),
+        AngularFireAuthModule,  NavbarComponent,
+        SearchFlightsComponent,
+        CardsComponent,
+        MapComponent,
+        CarouselComponent,
+        FooterComponent
+        ,HomepageComponent, NgbModule
+    ]
 })
 export class AppModule { }
