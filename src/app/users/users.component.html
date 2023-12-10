@@ -34,4 +34,30 @@
   </form>
 </div> -->
 
-<H1>HELLO</H1>
+
+<button class="btn btn-primary" (click)="refreshTable()">Refresh</button>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">User ID</th>
+      <th scope="col">Email</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Actions</th> 
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>
+        <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+        <button class="btn btn-info" (click)="viewFlights(user.id)">View Flights</button>
+      
+      </td>
+    </tr>
+  </tbody>
+</table>

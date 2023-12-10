@@ -7,6 +7,7 @@
       <div class="col-lg-6">
         <div class="container">
           <div class="">
+            <form>
             <div class="text-center m-3">
               <h1>Sign In</h1>
             </div>
@@ -30,12 +31,12 @@
                 </svg>
               </span>
               <input
-                type="email"
-                class="form-control border-0"
-                id="email"
-                placeholder="Enter your email"
-                aria-describedby="emailHelp"
-              />
+              type="email"
+              class="form-control border-0"
+              id="email"    name="email"
+              placeholder="Enter your email"
+              aria-describedby="emailHelp" [(ngModel)]="email" 
+            />
             </div>
             <label for="password" class="form-label">Password</label>
             <div class="input-group rounded-5">
@@ -54,17 +55,19 @@
                 </svg>
               </span>
               <input
-                type="password"
-                class="form-control border-0"
-                id="password"
-                placeholder="Enter your Password"
-                aria-describedby="emailHelp"
-              />
+            type="password"
+            class="form-control border-0"
+            id="password"
+            name="password"
+            placeholder="Enter your Password"
+            aria-describedby="emailHelp"
+            [(ngModel)]="password" 
+          />
             </div>
             <div class="text-center mt-3">
-              <button type="button" class="btn btn-primary">Sign In</button>
+              <button type="button" class="btn btn-primary" (click)="login()">Sign In</button>
             </div>
-
+            </form>
             <hr />
             <div class="text-center">
               <p>Or login using</p>
@@ -104,7 +107,7 @@
             <div class="text-center mt-5">
               <p>
                 Don't Have An Account?
-                <a href="#" style="text-decoration: underline"
+                <a href="/register" style="text-decoration: underline"
                   >Click here to Register</a
                 >
               </p>

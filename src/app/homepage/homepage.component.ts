@@ -11,7 +11,7 @@ import { FooterComponent } from "../footer/footer.component";
     selector: 'app-homepage',
     standalone: true,
     templateUrl: './homepage.component.html',
-    styleUrl: './homepage.component.css',
+    styleUrls: ['./homepage.component.css',],
     imports: [CommonModule, NavbarComponent, SearchFlightsComponent, CardsComponent, MapComponent, CarouselComponent, FooterComponent]
 })
 export class HomepageComponent {
