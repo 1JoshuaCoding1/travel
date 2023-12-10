@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Firestore, collection, addDoc, getDocs, doc, deleteDoc } from '@angular/fire/firestore';
 
+
 @Component({
   selector: 'app-add-flights',
   templateUrl: './add-flights.component.html',
