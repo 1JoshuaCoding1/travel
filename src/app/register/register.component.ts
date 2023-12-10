@@ -10,7 +10,7 @@ export class RegisterComponent implements OnInit {
 
   email: string = '';
   password: string = '';
-  firstName: string = ''; // Add other fields as needed
+  firstName: string = ''; 
   lastName: string = '';
   birthday: string = '';
   contactNum: string = '';

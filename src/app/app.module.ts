@@ -27,6 +27,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegisterComponent } from './register/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LayoutComponent } from './layout/layout.component';
 
 
 @NgModule({
@@ -35,7 +36,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         SidebarComponent,
         AddFlightsComponent,
         UsersComponent,
-        BookedFlightsComponent,RegisterComponent,LoginComponent
+        BookedFlightsComponent,RegisterComponent,LoginComponent, LayoutComponent
      
     ],
     providers: [
