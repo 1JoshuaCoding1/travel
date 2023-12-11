@@ -1,6 +1,8 @@
 <div class="container">
   <h1>Available Flights</h1>
-  <h2>Cebu to Manila</h2>
+  <h2 *ngIf="searchData.from; iS: null && searchData.destination; iS: null">
+    {{ searchData.from }} to {{ searchData.destination }}
+  </h2>
   <div class="row">
     <div class="col-sm-3">
       <div class="text-center">
@@ -21,163 +23,187 @@
     </div>
   </div>
 
-  <div class="accordion accordion-flush" id="accordionFlushExample">
-    <div class="accordion-item">
-      <h2 class="accordion-header">
-        <button
-          class="accordion-button collapsed"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#flush-collapseOne"
-          aria-expanded="false"
-          aria-controls="flush-collapseOne"
+  <div *ngFor="let flight of selectedFlights; let i = index">
+    <div class="accordion accordion-flush" [attr.id]="'accordionFlight' + i">
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            [attr.data-bs-toggle]="'collapse'"
+            [attr.data-bs-target]="'#flightCollapse' + i"
+            [attr.aria-expanded]="false"
+            [attr.aria-controls]="'flightCollapse' + i"
+          >
+            <div class="row" style="width: 100%">
+              <div class="col-sm-3">
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <img src="/assets/viewflights/cebu-pacific.png" alt="" />
+                  </div>
+                  <div class="col">
+                    <h6>{{ flight.airline }}</h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-2" id="departureTime">
+                <h6>{{ flight.departureTime }}</h6>
+              </div>
+              <div class="col-sm-2" id="flightDuration">
+                <h6>{{ flight.departureDuration }}</h6>
+              </div>
+              <div class="col-sm-2" id="Departure Date">
+                <h6>{{ flight.departureDate }}</h6>
+              </div>
+              <div class="col-sm-3 text-center" id="flightPrice">
+                <h6>₱{{ flight.price }}</h6>
+              </div>
+            </div>
+          </button>
+        </h2>
+        <div
+          [attr.id]="'flightCollapse' + i"
+          class="accordion-collapse collapse"
+          [attr.aria-labelledby]="'flightHeading' + i"
+          [attr.data-bs-parent]="'#accordionFlight' + i"
         >
-          <div class="row" style="width: 100%">
-            <div class="col-sm-3">
-              <div class="row align-items-center">
-                <div class="col-auto">
-                  <img src="/assets/viewflights/cebu-pacific.png" alt="" />
-                </div>
+          <div class="accordion-body">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  (click)="toggleContainer('flightDetailsContainer')"
+                  [class.active]="selectedTab === 'flightDetailsContainer'"
+                  >Flight Details</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  (click)="toggleContainer('priceDetailsContainer')"
+                  [class.active]="selectedTab === 'priceDetailsContainer'"
+                  >Price Details</a
+                >
+              </li>
+            </ul>
+            <div
+              class="container"
+              *ngIf="showFlightDetails"
+              id="flightDetailsContainer"
+            >
+              <div class="row">
                 <div class="col">
-                  <h6>Cebu Pacific</h6>
+                  <h6>Flight Id: {{ flight.flightID }}</h6>
                 </div>
-              </div>
-            </div>
-            <div class="col-sm-2" id="departureTime">
-              <h6>04:30 AM</h6>
-            </div>
-            <div class="col-sm-2" id="flightDuration">
-              <h6>1hr 30 Mins</h6>
-            </div>
-            <div class="col-sm-2" id="Departure Date">
-              <h6>November 25, 2023</h6>
-            </div>
-            <div class="col-sm-3 text-center" id="flightPrice">
-              <h6>₱ 12,000</h6>
-            </div>
-          </div>
-        </button>
-      </h2>
-      <div
-        id="flush-collapseOne"
-        class="accordion-collapse collapse"
-        data-bs-parent="#accordionFlushExample"
-      >
-        <div class="accordion-body">
-          <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a
-                class="nav-link active"
-                aria-current="page"
-                (click)="toggleContainer('flightDetailsContainer')"
-                >Flight Details</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                class="nav-link"
-                (click)="toggleContainer('priceDetailsContainer')"
-                >Price Details</a
-              >
-            </li>
-          </ul>
-          <div
-            class="container"
-            *ngIf="showFlightDetails"
-            id="flightDetailsContainer"
-          >
-            <div class="row">
-              <div class="col">
-                <h6>Flight Id: 293222</h6>
-              </div>
 
-              <div class="col" id="Airports">
-                <div class="d-flex flex-row align-items-center">
-                  <h6>Mactan International Airport</h6>
-                  <img
-                    src="/assets/viewflights/arrow.png"
-                    alt=""
-                    style="width: 179px; height: 10px; justify-content: center"
-                  />
-                  <h6>Ninoy Aquino International Airport</h6>
+                <div class="col" id="Airports">
+                  <div class="d-flex flex-row align-items-center">
+                    <h6>{{ flight.fromAirport }}</h6>
+                    <img
+                      src="/assets/viewflights/arrow.png"
+                      alt=""
+                      style="
+                        width: 179px;
+                        height: 10px;
+                        justify-content: center;
+                      "
+                    />
+                    <h6>{{ flight.destinationAirport }}</h6>
+                  </div>
+                </div>
+                <div class="col">
+                  <h6>Cabbin Max Baggage: {{ flight.cabinBaggage }}kg</h6>
+                  <h6>Plane Max Baggage: {{ flight.baggage }}kg</h6>
+                </div>
+                <div class="col">
+                  <h6 *ngFor="let term of flight.terms">{{ term }}</h6>
                 </div>
               </div>
-              <div class="col">
-                <h6>Cabbin Baggage: 6kg</h6>
-                <h6>Baggage: 10kg</h6>
-              </div>
-              <div class="col">
-                <h6>Non-Refundable</h6>
-                <h6>Free Meal & Beverages</h6>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col text-center d-grid gap-2">
-                <button type="button" class="btn btn-primary">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-airplane-fill"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849"
-                    />
-                  </svg>
-                  Book Flight
-                </button>
+              <div class="row">
+                <div class="col text-center d-grid gap-2">
+                  <button type="button" class="btn btn-primary">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-airplane-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849"
+                      />
+                    </svg>
+                    Book Flight
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div
-            class="container"
-            *ngIf="showPriceDetails"
-            id="priceDetailsContainer"
-          >
-            <div class="row">
-              <div class="row justify-content-between">
+            <div
+              class="container"
+              *ngIf="showPriceDetails"
+              id="priceDetailsContainer"
+            >
+              <div class="row">
+                <div
+                  class="row justify-content-between"
+                  *ngIf="searchData.numAdults && searchData.numAdults > 0"
+                >
+                  <div class="col">
+                    <h6>{{ searchData.numAdults }}x Adult</h6>
+                  </div>
+                  <div class="col text-end">
+                    <h6>₱ {{ searchData.numAdults * flight.price }}</h6>
+                  </div>
+                </div>
+                <div
+                  class="row justify-content-between"
+                  *ngIf="searchData.numChildren && searchData.numChildren > 0"
+                >
+                  <div class="col">
+                    <h6>{{ searchData.numChildren }}x Children</h6>
+                  </div>
+                  <div class="col text-end">
+                    <h6>₱ {{ searchData.numChildren * flight.price * 0.8 }}</h6>
+                  </div>
+                </div>
+                <div
+                  class="row justify-content-between"
+                  *ngIf="searchData.numToddler && searchData.numToddler > 0"
+                >
+                  <div class="col">
+                    <h6>{{ searchData.numToddler }}x Infant</h6>
+                  </div>
+                  <div class="col text-end">
+                    <h6>₱{{ searchData.numToddler * flight.price * 0.5 }}</h6>
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <div class="row text-center">
                 <div class="col">
-                  <h6>2x Adult</h6>
-                </div>
-                <div class="col text-end">
-                  <h6>₱ 6,000</h6>
+                  <h6>Total Price = ₱{{ flight.totalPrice }}</h6>
                 </div>
               </div>
-              <div class="row justify-content-between">
-                <div class="col">
-                  <h6>1x Infant</h6>
+              <div class="row">
+                <div class="col text-center d-grid gap-2">
+                  <button type="button" class="btn btn-primary">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-airplane-fill"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849"
+                      />
+                    </svg>
+                    Book Flight
+                  </button>
                 </div>
-                <div class="col text-end">
-                  <h6>₱ 6,000</h6>
-                </div>
-              </div>
-              <hr style="border: dotted" />
-              <div class="row justify-content-between">
-                <div class="text-center">
-                  <h6>Total Price: ₱ 12,000</h6>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col text-center d-grid gap-2">
-                <button type="button" class="btn btn-primary">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-airplane-fill"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      d="M6.428 1.151C6.708.591 7.213 0 8 0s1.292.592 1.572 1.151C9.861 1.73 10 2.431 10 3v3.691l5.17 2.585a1.5 1.5 0 0 1 .83 1.342V12a.5.5 0 0 1-.582.493l-5.507-.918-.375 2.253 1.318 1.318A.5.5 0 0 1 10.5 16h-5a.5.5 0 0 1-.354-.854l1.319-1.318-.376-2.253-5.507.918A.5.5 0 0 1 0 12v-1.382a1.5 1.5 0 0 1 .83-1.342L6 6.691V3c0-.568.14-1.271.428-1.849"
-                    />
-                  </svg>
-                  Book Flight
-                </button>
               </div>
             </div>
           </div>

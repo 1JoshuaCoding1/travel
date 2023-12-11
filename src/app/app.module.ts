@@ -27,6 +27,8 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegisterComponent } from './register/register.component';
 import { ViewFlightsComponent } from "./view-flights/view-flights.component";
+import { DatePipe } from '@angular/common';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
     declarations: [
@@ -34,9 +36,9 @@ import { ViewFlightsComponent } from "./view-flights/view-flights.component";
         SidebarComponent,
         AddFlightsComponent,
         UsersComponent,
-        BookedFlightsComponent, RegisterComponent, LoginComponent
+        BookedFlightsComponent, RegisterComponent, LoginComponent, CheckoutComponent
     ],
-    providers: [],
+    providers: [DatePipe],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,

@@ -18,10 +18,11 @@
           name="TypeFlight"
           id="TypeFlight"
           class="form-select custom-select"
+          [(ngModel)]="typeFlight"
         >
           <option value="" selected>Type Of Flight</option>
-          <option value="One-way">One Way</option>
-          <option value="Round-Trip">Round Trip</option>
+          <option value="One way">One Way</option>
+          <option value="Round Trip">Round Trip</option>
         </select>
       </div>
       <div class="col-md-3 p-0" id="passengersColumn">
@@ -163,6 +164,7 @@
               style="width: 100%"
               id="from"
               placeholder="From"
+              [(ngModel)]="from"
             />
             <label for="floatingInput" style="font-size: 16px">From</label>
           </div>
@@ -191,6 +193,7 @@
               style="width: 100%"
               id="from"
               placeholder="Destination"
+              [(ngModel)]="destination"
             />
             <label for="floatingInput" style="font-size: 16px"
               >Destination</label
@@ -223,6 +226,7 @@
             onblur="if(!this.value) this.type='text';"
             style="border: none"
             id="departureDate"
+            [(ngModel)]="departureDate"
           />
         </div>
       </div>
@@ -250,14 +254,19 @@
             onblur="if(!this.value) this.type='text';"
             style="border: none"
             id="returnDate"
+            [(ngModel)]="returnDate"
           />
         </div>
       </div>
     </div>
 
     <div class="button text-center">
-      <button type="button" class="btn btn-primary">
-       Book Flight
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="onSearchFlightsClick()"
+      >
+        Search Flight
       </button>
     </div>
   </div>

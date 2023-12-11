@@ -7,6 +7,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { SearchFlightsComponent } from './search-flights/search-flights.component';
+import { ViewFlightsComponent } from './view-flights/view-flights.component';
 
 
 const routes: Routes = [
@@ -16,8 +18,9 @@ const routes: Routes = [
   { path: 'add-flights', component: AddFlightsComponent},
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
-  {path:'homepage',component:HomepageComponent}
-  
+  {path:'homepage',component:HomepageComponent},
+  { path: 'search-flights', component: SearchFlightsComponent },
+  { path: 'view-flights', component: ViewFlightsComponent },
 
   
 ];
