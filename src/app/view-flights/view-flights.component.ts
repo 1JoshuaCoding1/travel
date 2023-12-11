@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import * as firebase from 'firebase/compat';
 import { startOfDay, endOfDay } from 'date-fns';
@@ -22,7 +22,7 @@ export class ViewFlightsComponent implements OnInit {
   totalPrice: number = 0;
   searchData: any;
 
-  constructor(private route: ActivatedRoute, private firestore: AngularFirestore) {}
+  constructor(private router: Router, private route: ActivatedRoute, private firestore: AngularFirestore) {}
 
   ngOnInit() {
     // Retrieve the data from the route
@@ -32,7 +32,19 @@ export class ViewFlightsComponent implements OnInit {
     });
     this.getSelectedFlights();
   }
+  onBookFlightClick(flight: any) {
 
+    this.router.navigate(['/checkout'], {
+      queryParams: {
+        flightId: flight.flightID,
+        numAdults: this.searchData.numAdults,
+        numChildren: this.searchData.numChildren,
+        numToddler: this.searchData.numToddler,
+        totalPrice: flight.totalPrice
+
+      }
+    });
+  }
   getSelectedFlights() {
     const departureDate = this.searchData.departureDate;
     const departureLocation = this.searchData.from;
