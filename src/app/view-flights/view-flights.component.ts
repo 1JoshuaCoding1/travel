@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import * as firebase from 'firebase/compat';
-import { startOfDay, endOfDay } from 'date-fns';
 import { doc } from 'firebase/firestore';
 
 @Component({
