@@ -1,7 +1,6 @@
 // users.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Firestore, collection, getDocs, deleteDoc, doc } from '@angular/fire/firestore';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap'; // Import NgbModal
 import { Router } from '@angular/router';
 
 
