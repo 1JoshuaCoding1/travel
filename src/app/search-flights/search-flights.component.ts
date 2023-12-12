@@ -16,7 +16,9 @@ import { DatePipe } from '@angular/common';
   templateUrl: './search-flights.component.html',
   styleUrls: ['./search-flights.component.css']
 })
-export class SearchFlightsComponent {
+export class SearchFlightsComponent implements OnDestroy {
+  // Declare authSubscription property
+  private authSubscription: Subscription | undefined;
   totalPassengers: number = 1;
   numAdults: number = 1;
   numChildren: number = 0;
@@ -33,19 +35,19 @@ export class SearchFlightsComponent {
 
 
 
-  // ngOnDestroy() {
-  //   // Unsubscribe when the component is destroyed
-  //   if (this.authSubscription) {
-  //     this.authSubscription.unsubscribe();
-  //   }
-  // }
+  ngOnDestroy() {
+    // Unsubscribe when the component is destroyed
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
+  }
 
   onSearchFlightsClick() {
     this.from.toLowerCase();
     this.destination.toLowerCase();
     this.formattedDepartureDate = this.datePipe.transform(this.departureDate, 'dd MMMM yyyy') ?? '';
     this.formattedReturnDate = this.datePipe.transform(this.returnDate, 'dd MMMM yyyy') ?? '';
-    this.router.navigate(['/view-flights'], {
+    this.router.navigate(['/homepage/view-flights'], {
       queryParams: {
         typeFlight: this.typeFlight,
         totalPassengers: this.totalPassengers,
