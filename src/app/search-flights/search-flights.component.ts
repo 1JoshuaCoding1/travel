@@ -44,14 +44,7 @@ export class SearchFlightsComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router, private datePipe: DatePipe, private afs: AngularFirestore, private authService: AuthService) {}
 
-  ngOnInit() {
-    document.addEventListener('DOMContentLoaded', () => {
-      const typeFlight = document.getElementById('TypeFlight') as HTMLSelectElement;
-      const returnDateInput = (document.getElementById('returnDate')?.parentNode?.parentNode as HTMLElement) ?? null;
 
-      // Rest of your code...
-    });
-  }
 
   ngOnDestroy() {
     // Unsubscribe when the component is destroyed
@@ -195,7 +188,6 @@ export class SearchFlightsComponent implements OnInit, OnDestroy {
     const numAdults = parseInt(document.getElementById('numAdults')?.innerText || '0', 10);
     const numChildren = parseInt(document.getElementById('numChildren')?.innerText || '0', 10);
     const numToddlers = parseInt(document.getElementById('numToddlers')?.innerText || '0', 10);
-
     this.numAdults = numAdults;
     this.numChildren = numChildren;
     this.numToddler = numToddlers;
