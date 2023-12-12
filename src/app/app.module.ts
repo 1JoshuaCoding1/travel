@@ -25,9 +25,12 @@ import { MapComponent } from './map/map.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegisterComponent } from './register/register.component';
+
+import { ViewFlightsComponent } from "./view-flights/view-flights.component";
+import { DatePipe } from '@angular/common';
+import { CheckoutComponent } from './checkout/checkout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutComponent } from './layout/layout.component';
-
 
 
 @NgModule({
@@ -36,30 +39,28 @@ import { LayoutComponent } from './layout/layout.component';
         SidebarComponent,
         AddFlightsComponent,
         UsersComponent,
-        BookedFlightsComponent,RegisterComponent,LoginComponent,
-         LayoutComponent,
-        
-     
-    ],
-    providers: [
-    ],
+        BookedFlightsComponent, RegisterComponent, LoginComponent, CheckoutComponent,LayoutComponent],
+
+    
+    providers: [DatePipe],
     bootstrap: [AppComponent],
     imports: [
         BrowserModule,
         AppRoutingModule,
         FormsModule,
-        AngularFireModule.initializeApp(environment.firebaseConfig), 
+        AngularFireModule.initializeApp(environment.firebaseConfig),
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
         provideDatabase(() => getDatabase()),
-        AngularFireAuthModule,  NavbarComponent,
+        AngularFireAuthModule, NavbarComponent,
         SearchFlightsComponent,
         CardsComponent,
         MapComponent,
         CarouselComponent,
+        ViewFlightsComponent,
+        HomepageComponent,
         FooterComponent
-        ,HomepageComponent, NgbModule
     ]
 })
 export class AppModule { }

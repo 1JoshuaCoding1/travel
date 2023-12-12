@@ -6,17 +6,76 @@ import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-search-flights',
   standalone: true,
+  imports: [CommonModule,FormsModule ], 
   styleUrls: ['./search-flights.component.css'],
-  templateUrl: './search-flights.component.html',
-  imports: [CommonModule, FormsModule],
+   templateUrl: './search-flights.component.html',
 })
-export class SearchFlightsComponent {
-  private authSubscription: Subscription | undefined;
 
+
+export class SearchFlightsComponent {
+
+  totalPassengers: number = 0;
+  numAdults: number = 0;
+  numChildren: number = 0;
+  numToddler: number = 0;
+  from:string = '';
+  destination:string = '';
+  departureDate:string = '';
+  returnDate:string = '';
+  formattedDepartureDate:string ='';
+  formattedReturnDate:string ='';
+  typeFlight:string = '';
+
+  constructor(private router: Router,private datePipe: DatePipe) {}
+
+  
+  onSearchFlightsClick() {
+    this.formattedDepartureDate = this.datePipe.transform(this.departureDate, 'dd MMMM yyyy') ?? '';
+    this.formattedReturnDate = this.datePipe.transform(this.returnDate, 'dd MMMM yyyy') ?? '';
+    this.router.navigate(['/view-flights'], {
+      queryParams: {
+        typeFlight:this.typeFlight,
+        totalPassengers: this.totalPassengers,
+        numAdults: this.numAdults,
+        numChildren: this.numChildren,
+        numToddler: this.numToddler,
+        from: this.from,
+        destination: this.destination,
+        departureDate: this.formattedDepartureDate,
+        returnDate: this.formattedReturnDate,
+      },
+    });
+    // const searchData = {
+    //   typeOfFlight: 'Round-Trip',
+    //   totalPassengers: this.totalPassengers,
+    //   numAdults: this.numAdults,
+    //   numChildren:this.numChildren,
+    //   numToddler:this.numToddler,
+    //   from: this.from,
+    //   destination:this.destination,
+    //   departureDate: this.departureDate,
+    //   returnDate:this.returnDate,
+    // };
+    // this.router.navigate(['/view-flights', { searchData }]);
+  }
+  
+
+  ngOnInit() {
+    
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      const typeFlight = document.getElementById("TypeFlight") as HTMLSelectElement;
+      const returnDateInput = (document.getElementById("returnDate")?.parentNode?.parentNode as HTMLElement) ?? null;
+
+
+       private authSubscription: Subscription | undefined;
   // Properties for two-way binding
   typeOfFlight: string = '';
   seatClass: string = '';
@@ -27,7 +86,34 @@ export class SearchFlightsComponent {
 
   constructor(private afs: AngularFirestore, private authService: AuthService) {}
 
-  ngOnDestroy() {
+
+      document.getElementById("btn-increase-children")?.addEventListener("click", function () {
+        handleButtonClick("increase", "numChildren");
+      });
+      document.getElementById("btn-decrease-children")?.addEventListener("click", function () {
+        handleButtonClick("decrease", "numChildren");
+      });
+      document.getElementById("btn-increase-toddler")?.addEventListener("click", function () {
+        handleButtonClick("increase", "numToddlers");
+      });
+      document.getElementById("btn-decrease-toddler")?.addEventListener("click", function () {
+        handleButtonClick("decrease", "numToddlers");
+      });
+      document.getElementById("btn-increase-adults")?.addEventListener("click", function () {
+        handleButtonClick("increase", "numAdults");
+      });
+      
+      document.getElementById("btn-decrease-adults")?.addEventListener("click", function () {
+        handleButtonClick("decrease", "numAdults");
+      });
+
+      function toggleReturnDate() {
+        if (returnDateInput) {
+          returnDateInput.style.display = typeFlight.value === "Round Trip" ? "block" : "none";
+        }
+        else{
+
+         ngOnDestroy() {
     // Unsubscribe when the component is destroyed
     if (this.authSubscription) {
       this.authSubscription.unsubscribe();
@@ -37,8 +123,9 @@ export class SearchFlightsComponent {
   bookFlight() {
     // Placeholder: In a real app, get the actual user ID based on authentication
     this.authSubscription = this.authService.getCurrentUser().subscribe((user) => {
-      const userId = user ? user.uid : null;
-
+      const userId = user ? user.uid : null;  
+          
+          
       if (!userId) {
         // Handle the case where the user is not authenticated
         console.error('User not authenticated');
@@ -70,4 +157,18 @@ export class SearchFlightsComponent {
         });
     });
   }
+
+   updateTotalPassengers() {
+
+    const numAdults = parseInt(document.getElementById("numAdults")?.innerText || "0", 10);
+    const numChildren = parseInt(document.getElementById("numChildren")?.innerText || "0", 10);
+    const numToddlers = parseInt(document.getElementById("numToddlers")?.innerText || "0", 10);
+    this.numAdults = numAdults;
+    this.numChildren = numChildren;
+    this.numToddler = numToddlers
+    this.totalPassengers = numAdults + numChildren + numToddlers;
+  }
+
+
+
 }

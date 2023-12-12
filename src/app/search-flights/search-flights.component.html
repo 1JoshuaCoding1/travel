@@ -14,11 +14,17 @@
   >
     <div class="row mb-3" id="searchRow">
       <div class="col-md-2 p-0">
-        <select name="TypeFlight" id="TypeFlight" class="form-select custom-select" [(ngModel)]="typeOfFlight">
+
+        <select
+          name="TypeFlight"
+          id="TypeFlight"
+          class="form-select custom-select"
+          [(ngModel)]="typeFlight"
+        >
 
           <option value="" selected>Type Of Flight</option>
-          <option value="One-way">One Way</option>
-          <option value="Round-Trip">Round Trip</option>
+          <option value="One way">One Way</option>
+          <option value="Round Trip">Round Trip</option>
         </select>
       </div>
       
@@ -52,7 +58,16 @@
             </svg>
           </span>
           <div class="form-floating p-0">
-            <input type="text" class="form-control border-0" style="width: 100%" id="from" placeholder="From" [(ngModel)]="from" />
+
+            <input
+              type="text"
+              class="form-control border-0"
+              style="width: 100%"
+              id="from"
+              placeholder="From"
+              [(ngModel)]="from"
+            />
+
             <label for="floatingInput" style="font-size: 16px">From</label>
           </div>
         </div>
@@ -74,8 +89,19 @@
             </svg>
           </span>
           <div class="form-floating p-0">
-            <input type="text" class="form-control border-0" style="width: 100%" id="destination" placeholder="Destination" [(ngModel)]="destination" />
-            <label for="floatingInput" style="font-size: 16px" >Destination</label>
+
+            <input
+              type="text"
+              class="form-control border-0"
+              style="width: 100%"
+              id="from"
+              placeholder="Destination"
+              [(ngModel)]="destination"
+            />
+            <label for="floatingInput" style="font-size: 16px"
+              >Destination</label
+            >
+
           </div>
         </div>
       </div>
@@ -97,17 +123,18 @@
             </svg>
           </span>
           <input
-          placeholder="Departure Date"
-          type="text"
-          class="form-control"
-          onfocus="if(!this.value) this.type='date';"
-          onblur="if(!this.value) this.type='text';"
-          style="border: none"
-          id="departureDate"
-          [(ngModel)]="departureDate"
-        />
-        
-        </div>
+
+            placeholder="Departure Date"
+            type="text"
+            class="form-control"
+            onfocus="if(!this.value) this.type='date';"
+            onblur="if(!this.value) this.type='text';"
+            style="border: none"
+            id="departureDate"
+            [(ngModel)]="departureDate"
+          />
+
+  
         </div>
       </div>
       <div class="col-md-3 mb-3">
@@ -127,20 +154,31 @@
             </svg>
           </span>
           <input
-          placeholder="Return Date"
-          type="text"
-          class="form-control"
-          onfocus="if(!this.value) this.type='date';"
-          onblur="if(!this.value) this.type='text';"
-          style="border: none"
-          id="returnDate"
-          [(ngModel)]="returnDate"
-        />
+
+            placeholder="Return Date"
+            type="text"
+            class="form-control"
+            onfocus="if(!this.value) this.type='date';"
+            onblur="if(!this.value) this.type='text';"
+            style="border: none"
+            id="returnDate"
+            [(ngModel)]="returnDate"
+          />
+
         </div>
       </div>
     </div>
     <div class="button text-center">
-      <button (click)="bookFlight()">Book Flight</button>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        (click)="onSearchFlightsClick()"
+      >
+        Search Flight
+      </button>
+
+
     </div>
   </div>
 
