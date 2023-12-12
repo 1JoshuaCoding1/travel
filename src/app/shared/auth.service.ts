@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -22,18 +23,27 @@ export class AuthService {
     this.fireauth.signInWithEmailAndPassword(email, password).then(res => {
       console.log('Login successful:', res);
   
-      localStorage.setItem('token', 'true');
+      // Check if the logged-in user is admin
+      const isAdmin = this.isAdmin(res.user?.email);
   
-      // Get the username
-      const username = res.user?.displayName || res.user?.email;
-  
-      // Navigate to the homepage and pass the username as a query parameter
-      this.router.navigate(['/homepage'], {queryParams: {username}});
+      if (isAdmin) {
+        
+        this.router.navigate(['/layout']);
+      } else {
+       
+        this.router.navigate(['/homepage']);
+      }
     }).catch(err => {
+      // Handle login error
       console.error('Login error:', err);
       alert(err.message);
       this.router.navigate(['/login']);
     });
+  }
+  
+  private isAdmin(email: string | null | undefined): boolean {
+
+    return email?.toLowerCase() === 'admin@gmail.com';
   }
   
   
@@ -72,6 +82,10 @@ export class AuthService {
     }).catch((err: any) => {
       alert('Something went wrong. Not able to send mail to your email.');
     });
+  }
+ 
+  getCurrentUser(): Observable<any> {
+    return this.fireauth.authState;
   }
 }
 

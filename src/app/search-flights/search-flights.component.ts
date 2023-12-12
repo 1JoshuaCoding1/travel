@@ -1,16 +1,26 @@
+// Import the required modules
 import { Component } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AuthService } from '../shared/auth.service';
+import { Subscription } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-search-flights',
   standalone: true,
-  imports: [CommonModule,FormsModule ],
-  templateUrl: './search-flights.component.html',
-  styleUrls: ['./search-flights.component.css']
+  imports: [CommonModule,FormsModule ], 
+  styleUrls: ['./search-flights.component.css'],
+   templateUrl: './search-flights.component.html',
 })
+
+
 export class SearchFlightsComponent {
+
   totalPassengers: number = 0;
   numAdults: number = 0;
   numChildren: number = 0;
@@ -64,20 +74,18 @@ export class SearchFlightsComponent {
       const typeFlight = document.getElementById("TypeFlight") as HTMLSelectElement;
       const returnDateInput = (document.getElementById("returnDate")?.parentNode?.parentNode as HTMLElement) ?? null;
 
-      const handleButtonClick = (action: string, countElementId: string) => {
-        const countElement = document.getElementById(countElementId) as HTMLHeadingElement;
-        let currentValue = parseInt(countElement.innerText);
-  
-        if (action === "increase") {
-          countElement.innerText = (currentValue + 1).toString();
-        } else if (action === "decrease" && currentValue > 0) {
-          countElement.innerText = (currentValue - 1).toString();
-        }
-        this.updateTotalPassengers();
-      };
 
-    
-    
+       private authSubscription: Subscription | undefined;
+  // Properties for two-way binding
+  typeOfFlight: string = '';
+  seatClass: string = '';
+  from: string = '';
+  destination: string = '';
+  departureDate: string = '';
+  returnDate: string = '';
+
+  constructor(private afs: AngularFirestore, private authService: AuthService) {}
+
 
       document.getElementById("btn-increase-children")?.addEventListener("click", function () {
         handleButtonClick("increase", "numChildren");
@@ -105,16 +113,51 @@ export class SearchFlightsComponent {
         }
         else{
 
-        }
+         ngOnDestroy() {
+    // Unsubscribe when the component is destroyed
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
+  }
+
+  bookFlight() {
+    // Placeholder: In a real app, get the actual user ID based on authentication
+    this.authSubscription = this.authService.getCurrentUser().subscribe((user) => {
+      const userId = user ? user.uid : null;  
+          
+          
+      if (!userId) {
+        // Handle the case where the user is not authenticated
+        console.error('User not authenticated');
+        return;
       }
-    
 
-      toggleReturnDate();
+      // Prepare data object
+      const flightData = {
+        typeOfFlight: this.typeOfFlight,
+        seatClass: this.seatClass,
+        from: this.from,
+        destination: this.destination,
+        departureDate: this.departureDate,
+        returnDate: this.returnDate,
+      };
 
-      typeFlight.addEventListener("change", toggleReturnDate);
+      const userDocRef = this.afs.collection('users').doc(userId);
+
+      userDocRef
+        .collection('bookedFlights')
+        .add(flightData)
+        .then((docRef: { id: any }) => {
+          console.log('Document written with ID: ', docRef.id);
+          // You can add any further actions here, like showing a success message
+        })
+        .catch((error: any) => {
+          console.error('Error adding document: ', error);
+          // Handle errors here
+        });
     });
   }
- 
+
    updateTotalPassengers() {
 
     const numAdults = parseInt(document.getElementById("numAdults")?.innerText || "0", 10);
@@ -128,6 +171,4 @@ export class SearchFlightsComponent {
 
 
 
-  
 }
-
