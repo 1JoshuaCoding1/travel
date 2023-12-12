@@ -1,38 +1,93 @@
-<form #flightForm="ngForm" (ngSubmit)="onSubmit(flightForm)">
-  <div class="mb-3">
+<form #flightForm="ngForm" (ngSubmit)="onSubmit(flightForm)" class="row g-3">
+  <div class="col-md-6">
+    <label for="airline" class="form-label">Airline</label>
+    <input type="text" class="form-control" id="airline" name="airline" [(ngModel)]="airline" required>
+  </div>
+  <div class="col-md-6">
+    <label for="flightID" class="form-label">Flight ID</label>
+    <input type="text" class="form-control" id="flightID" name="flightID" [(ngModel)]="flightID" required>
+  </div>
+  <div class="col-md-6">
     <label for="destination" class="form-label">Destination</label>
     <input type="text" class="form-control" id="destination" name="destination" [(ngModel)]="destination" required>
   </div>
-  <div class="mb-3">
+  <div class="col-md-6">
     <label for="departure" class="form-label">Departure</label>
     <input type="text" class="form-control" id="departure" name="departure" [(ngModel)]="departure" required>
   </div>
-  <div class="mb-3">
+  <div class="col-md-6">
     <label for="price" class="form-label">Price</label>
     <input type="text" class="form-control" id="price" name="price" [(ngModel)]="price" required>
   </div>
-  <button type="submit" class="btn btn-primary">Add Flight</button>
+  <!-- Additional fields -->
+  <div class="col-md-6">
+    <label for="baggage" class="form-label">Baggage</label>
+    <input type="text" class="form-control" id="baggage" name="baggage" [(ngModel)]="baggage" required>
+  </div>
+  <div class="col-md-6">
+    <label for="cabinBaggage" class="form-label">Cabin Baggage</label>
+    <input type="text" class="form-control" id="cabinBaggage" name="cabinBaggage" [(ngModel)]="cabinBaggage" required>
+  </div>
+  <div class="col-md-6">
+    <label for="departureDate" class="form-label">Departure Date</label>
+    <input type="text" class="form-control" id="departureDate" name="departureDate" [(ngModel)]="departureDate" required>
+  </div>
+  <div class="col-md-6">
+    <label for="departureDuration" class="form-label">Departure Duration</label>
+    <input type="text" class="form-control" id="departureDuration" name="departureDuration" [(ngModel)]="departureDuration" required>
+  </div>
+  <div class="col-md-6">
+    <label for="departureTime" class="form-label">Departure Time</label>
+    <input type="text" class="form-control" id="departureTime" name="departureTime" [(ngModel)]="departureTime" required>
+  </div>
+  <div class="col-md-6">
+    <label for="destinationAirport" class="form-label">Destination Airport</label>
+    <input type="text" class="form-control" id="destinationAirport" name="destinationAirport" [(ngModel)]="destinationAirport" required>
+  </div>
+  <div class="col-md-6">
+    <label for="fromAirport" class="form-label">From Airport</label>
+    <input type="text" class="form-control" id="fromAirport" name="fromAirport" [(ngModel)]="fromAirport" required>
+  </div>
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Add Flight</button>
+  </div>
 </form>
 
-
-
+<button class="btn btn-primary" (click)="refreshTable()">Refresh Table</button>
 
 <table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">Flight ID</th>
+      <th scope="col">Airline</th>
       <th scope="col">Destination</th>
       <th scope="col">Departure</th>
       <th scope="col">Price</th>
+      <th scope="col">Baggage</th>
+      <th scope="col">Cabin Baggage</th>
+      <th scope="col">Departure Date</th>
+      <th scope="col">Departure Duration</th>
+      <th scope="col">Departure Time</th>
+      <th scope="col">Destination Airport</th>
+      <th scope="col">From Airport</th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let flight of flights">
-      <td>{{ flight.id }}</td>
+      <td>{{ flight.flightID }}</td>
+      <td>{{ flight.airline }}</td>
       <td>{{ flight.destination }}</td>
       <td>{{ flight.departure }}</td>
       <td>{{ flight.price }}</td>
+      <td>{{ flight.baggage }}</td>
+      <td>{{ flight.cabinBaggage }}</td>
+      <td>{{ flight.departureDate }}</td>
+      <td>{{ flight.departureDuration }}</td>
+      <td>{{ flight.departureTime }}</td>
+      <td>{{ flight.destinationAirport }}</td>
+      <td>{{ flight.fromAirport }}</td>
       <td>
         <button class="btn btn-danger" (click)="deleteFlight(flight.id)">Delete</button>
       </td>
