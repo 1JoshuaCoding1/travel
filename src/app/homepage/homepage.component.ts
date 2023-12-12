@@ -8,6 +8,7 @@
     import { FooterComponent } from "../footer/footer.component";
     import { RouterModule } from '@angular/router';
     import { FormsModule } from '@angular/forms';
+    import { CheckoutComponent } from '../checkout/checkout.component';
 
     @Component({
         selector: 'app-homepage',

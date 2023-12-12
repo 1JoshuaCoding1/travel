@@ -5,6 +5,7 @@ import { AuthService } from '../shared/auth.service';
 
 @Component({
   selector: 'app-checkout',
+
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })

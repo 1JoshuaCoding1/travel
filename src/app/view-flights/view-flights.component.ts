@@ -32,7 +32,7 @@ export class ViewFlightsComponent implements OnInit {
   }
   onBookFlightClick(flight: any) {
 
-    this.router.navigate(['/checkout'], {
+    this.router.navigate(['/homepage/checkout'], {
       queryParams: {
         flightId: flight.flightID,
         numAdults: this.searchData.numAdults,
@@ -56,7 +56,7 @@ export class ViewFlightsComponent implements OnInit {
         ref
           .where('departure', '==', departureLocation)
           .where('destination', '==', destinationLocation)
-          .where('departureDate', '==', departureDate)
+          // .where('departureDate', '==', departureDate)
       )
       .get()
       .subscribe((querySnapshot) => {

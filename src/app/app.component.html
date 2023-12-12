@@ -1,19 +1,16 @@
-<body>
-  <app-navbar *ngIf="showComponents()"></app-navbar>
-  <app-search-flights *ngIf="showComponents()"></app-search-flights>
-  <ng-container *ngIf="showComponents() == false; else loggedIn">
-    <!-- Display components for users who are not logged in -->
-    <app-login></app-login>
+<!-- <body>
+  <app-navbar *ngIf="authService.isAuthenticated()"></app-navbar>
+  <app-search-flights *ngIf="authService.isAuthenticated()"></app-search-flights>
+  <ng-container *ngIf="authService.isAuthenticated(); else notLoggedIn">
+
+    
+    <app-homepage></app-homepage>
   </ng-container>
 
-  <ng-template #loggedIn>
-    <router-outlet></router-outlet>
-    <!-- Display components for users who are logged in -->
-    <app-cards></app-cards>
-    <app-map></app-map>
-    <app-carousel></app-carousel>
-    <footer>
-      <app-footer *ngIf="showComponents()"></app-footer>
-    </footer>
+  <ng-template #notLoggedIn>
+
+    <app-login></app-login>
   </ng-template>
 </body>
+
+<router-outlet> </router-outlet>

@@ -10,7 +10,7 @@ import { AuthService } from './shared/auth.service';
 export class AppComponent {
   title = 'travel';
 
-  constructor(private authService: AuthService) {}
+  constructor(public authService: AuthService) {}
 
   showComponents(): boolean {
     return this.authService.isAuthenticated();
