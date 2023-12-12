@@ -33,12 +33,12 @@ export class SearchFlightsComponent {
 
 
 
-  ngOnDestroy() {
-    // Unsubscribe when the component is destroyed
-    if (this.authSubscription) {
-      this.authSubscription.unsubscribe();
-    }
-  }
+  // ngOnDestroy() {
+  //   // Unsubscribe when the component is destroyed
+  //   if (this.authSubscription) {
+  //     this.authSubscription.unsubscribe();
+  //   }
+  // }
 
   onSearchFlightsClick() {
     this.from.toLowerCase();
