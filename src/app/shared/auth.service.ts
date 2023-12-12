@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private isLoggedIn = false;
+
   constructor(
     private fireauth: AngularFireAuth,
     private firestore: AngularFirestore,
@@ -22,14 +22,16 @@ export class AuthService {
     console.log('Attempting to log in with email:', email);
     this.fireauth.signInWithEmailAndPassword(email, password).then(res => {
       console.log('Login successful:', res);
-
+  
       // Check if the logged-in user is admin
       const isAdmin = this.isAdmin(res.user?.email);
-
+  
       if (isAdmin) {
+        
         this.router.navigate(['/layout']);
       } else {
-        this.isLoggedIn = true;
+       
+        this.router.navigate(['/homepage']);
       }
     }).catch(err => {
       // Handle login error
@@ -84,16 +86,6 @@ export class AuthService {
  
   getCurrentUser(): Observable<any> {
     return this.fireauth.authState;
-
-  }
-
-  logout() {
-
-    this.isLoggedIn = false;
-  }
-
-  isAuthenticated(): boolean {
-    return this.isLoggedIn;
   }
 }
 

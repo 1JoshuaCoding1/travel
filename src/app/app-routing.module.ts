@@ -27,9 +27,11 @@ const routes: Routes = [
   
   {path:'login', component:LoginComponent},
   {path:'register', component:RegisterComponent},
+  {path:'homepage',component:HomepageComponent},
   { path: 'search-flights', component: SearchFlightsComponent },
   { path: 'view-flights', component: ViewFlightsComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
 
 
 
