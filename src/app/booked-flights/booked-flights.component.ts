@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { Firestore, collection, getDocs, deleteDoc, doc } from '@angular/fire/firestore';
 
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AuthService } from '../shared/auth.service';
+import { documentId } from 'firebase/firestore';
+
 @Component({
   selector: 'app-booked-flights',
   templateUrl: './booked-flights.component.html',
@@ -8,38 +12,42 @@ import { Firestore, collection, getDocs, deleteDoc, doc } from '@angular/fire/fi
 })
 export class BookedFlightsComponent {
 
-  flights: any[] = [];
+  bookedFlights: any[] = [];
 
-  constructor(private fs: Firestore) {}
+  constructor(
+    private firestore: AngularFirestore,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
-    this.getFlights();
+    this.getBookedFlights();
   }
 
-  async getFlights() {
-    const flightsCollection = collection(this.fs, 'flights');
-    const querySnapshot = await getDocs(flightsCollection);
-  
-    this.flights = [];
-    querySnapshot.forEach((doc) => {
-      const flightData = { id: doc.id, ...doc.data() };
-      console.log('Flight Data:', flightData);
-      this.flights.push(flightData);
-    });
+  getBookedFlights() {
+    this.firestore
+      .collectionGroup('bookedFlights') 
+      .valueChanges()
+      .subscribe((flights: any[]) => {
+        this.bookedFlights = flights;
+      });
   }
 
   
 
-  async deleteFlight(flightId: string) {
-    const flightDoc = doc(this.fs, 'flights', flightId);
+  
+  async deleteFlight(documentId: string) {
+    const flightRef = this.firestore.collection('bookedFlights').doc(documentId);
 
     try {
-      await deleteDoc(flightDoc);
+      await flightRef.delete();
       console.log('Flight deleted successfully');
-      this.getFlights(); // Refresh the flights data after deletion
+      this.getBookedFlights(); 
     } catch (error) {
       console.error('Flight deletion error:', error);
     }
   }
 
+  refreshBookedFlights() {
+    this.getBookedFlights(); 
+  }
 }

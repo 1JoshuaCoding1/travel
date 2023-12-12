@@ -18,6 +18,7 @@ export class CheckoutComponent implements OnInit {
   infantPrice: number = 0;
   adultPrice: number = 0;
   totalPrice: number = 0;
+  paymentMethod: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -86,7 +87,8 @@ export class CheckoutComponent implements OnInit {
       numToddler: this.searchData.numToddler,
       adultPrice: this.searchData.adultPrice,
       childPrice: this.searchData.childPrice,
-      infantPrice: this.searchData.infantPrice
+      infantPrice: this.searchData.infantPrice,
+      paymentMethod: this.paymentMethod
     };
 
     const flightDataWithDetails = { ...this.chosenFlights[0], ...additionalDetails };
