@@ -31,6 +31,8 @@ import { DatePipe } from '@angular/common';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LayoutComponent } from './layout/layout.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -60,7 +62,8 @@ import { LayoutComponent } from './layout/layout.component';
         CarouselComponent,
         ViewFlightsComponent,
         HomepageComponent,
-        FooterComponent
+        FooterComponent,
+        BrowserAnimationsModule
     ]
 })
 export class AppModule { }
