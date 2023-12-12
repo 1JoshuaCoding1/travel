@@ -1,22 +1,33 @@
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Flight ID</th>
-      <th scope="col">Destination</th>
-      <th scope="col">Departure</th>
-      <th scope="col">Price</th>
-      <th scope="col">Actions</th> 
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let flight of flights">
-      <td>{{ flight.id }}</td>
-      <td>{{ flight.destination }}</td>
-      <td>{{ flight.departure }}</td>
-      <td>{{ flight.price }}</td>
-      <td>
-        <button class="btn btn-danger" (click)="deleteFlight(flight.id)">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div>
+  <h4>All Booked Flights</h4>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Airline</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Departure</th>
+        <th scope="col">Departure Date</th>
+        <th scope="col">Flight Time</th>
+        <th scope="col">Price</th>
+        <th scope="col">Payment Method</th>
+        <!-- <th scope="col">Action</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let flight of bookedFlights">
+        <td>{{ flight.airline }}</td>
+        <td>{{ flight.destination }}</td>
+        <td>{{ flight.departure }}</td>
+        <td>{{ flight.departureDate }}</td>
+        <td>{{ flight.departureDuration }}</td>
+        <td>{{ flight.price }}</td>
+        <td>{{ flight.paymentMethod }}</td>
+        <!-- <td>
+          <button (click)="deleteFlight(flight.documentid)">Delete</button>
+
+        </td> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

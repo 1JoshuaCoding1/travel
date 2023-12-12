@@ -1,11 +1,16 @@
-<app-navbar> </app-navbar>
-<body>
-  <app-search-flights></app-search-flights>
-  <!-- <app-view-flights></app-view-flights> -->
-  <router-outlet></router-outlet>
-  <!-- <app-cards></app-cards>
-  <app-map></app-map>
-  <app-carousel></app-carousel> -->
-</body>
-<!-- <app-login> </app-login> -->
-<app-footer></app-footer>
+<!-- <body>
+  <app-navbar *ngIf="authService.isAuthenticated()"></app-navbar>
+  <app-search-flights *ngIf="authService.isAuthenticated()"></app-search-flights>
+  <ng-container *ngIf="authService.isAuthenticated(); else notLoggedIn">
+
+    
+    <app-homepage></app-homepage>
+  </ng-container>
+
+  <ng-template #notLoggedIn>
+
+    <app-login></app-login>
+  </ng-template>
+</body> -->
+
+<router-outlet> </router-outlet>

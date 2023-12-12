@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import * as firebase from 'firebase/compat';
-import { doc } from 'firebase/firestore';
+
 
 @Component({
   selector: 'app-view-flights',
@@ -33,15 +32,16 @@ export class ViewFlightsComponent implements OnInit {
   }
   onBookFlightClick(flight: any) {
 
-    this.router.navigate(['/checkout'], {
+    this.router.navigate(['/homepage/checkout'], {
       queryParams: {
         flightId: flight.flightID,
         numAdults: this.searchData.numAdults,
         numChildren: this.searchData.numChildren,
         numToddler: this.searchData.numToddler,
+        adultPrice: flight.adultPrice,
+        childPrice:flight.childPrice,
+        infantPrice:flight.infantPrice,
         totalPrice: flight.totalPrice
-        
-
       }
     });
   }
@@ -50,31 +50,33 @@ export class ViewFlightsComponent implements OnInit {
     const departureLocation = this.searchData.from;
     const destinationLocation = this.searchData.destination;
 
-    // Convert formatted departure date to a JavaScript Date object
-    const formattedDepartureDate = new Date(departureDate);
-
     // Query Firestore for flights with the same departure date and location
     this.firestore
-      .collection('flights', (ref) =>
+      .collection('flights', (ref:any) =>
         ref
           .where('departure', '==', departureLocation)
           .where('destination', '==', destinationLocation)
-          .where('departureDate', '==', departureDate)
+          // .where('departureDate', '==', departureDate)
       )
       .get()
       .subscribe((querySnapshot) => {
         this.selectedFlights = querySnapshot.docs.map((doc) => {
           const flightData: any = doc.data();
-          this.adultPrice = this.searchData.numAdults * flightData.price;
-          this.childPrice = this.searchData.numChildren * flightData.price * 0.8; // subtract 20%
-          this.infantPrice = this.searchData.numToddler * flightData.price * 0.5; // subtract 50%
+          
+          flightData.adultPrice = this.searchData.numAdults * flightData.price;
+          flightData.childPrice = this.searchData.numChildren * flightData.price * 0.8; // subtract 20%
+          flightData.infantPrice = this.searchData.numToddler * flightData.price * 0.5; // subtract 50%
+          this.adultPrice =  flightData.adultPrice;
+          this.childPrice = flightData.childPrice;
+          this.infantPrice = flightData.infantPrice;
           flightData.totalPrice = this.adultPrice + this.childPrice + this.infantPrice;
           return flightData;
         });
         // Now, this.selectedFlights contains the flights with the specified criteria
-        console.log(this.selectedFlights);
+     
       });
   }
+
 
   showFlightDetails: boolean = true;
   showPriceDetails: boolean = false;
