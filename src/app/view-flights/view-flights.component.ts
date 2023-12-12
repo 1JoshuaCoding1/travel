@@ -40,6 +40,7 @@ export class ViewFlightsComponent implements OnInit {
         numChildren: this.searchData.numChildren,
         numToddler: this.searchData.numToddler,
         totalPrice: flight.totalPrice
+        
 
       }
     });

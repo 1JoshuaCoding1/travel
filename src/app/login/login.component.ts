@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
       alert('Please enter email');
       return;
     }
+
     if(this.password == '') {
       alert('Please enter password');
       return;

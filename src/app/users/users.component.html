@@ -1,40 +1,3 @@
-<!-- <table>
-  <thead class="table-dark">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">Email</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody class="table-hover">
-    <tr *ngFor="let user of users">
-      <td scope="row">{{ user.uid }}</td>
-      <td>{{ user.email }}</td>
-      <td>
-        <button class="btn btn-danger" (click)="deleteUser(user.uid)">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table> -->
-
-
-<!-- registration.component.html -->
-<!-- <div>
-  <h2>Register</h2>
-  <form (ngSubmit)="registerUser()" #registerForm="ngForm">
-    <div>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" [(ngModel)]="email" required>
-    </div>
-    <div>
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" [(ngModel)]="password" required>
-    </div>
-    <button type="submit" [disabled]="!registerForm.valid">Register</button>
-  </form>
-</div> -->
-
-
 <button class="btn btn-primary" (click)="refreshTable()">Refresh</button>
 
 <table class="table table-hover">
@@ -55,9 +18,35 @@
       <td>{{ user.lastName }}</td>
       <td>
         <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
-        <button class="btn btn-info" (click)="viewFlights(user.id)">View Flights</button>
-      
+        <button class="btn btn-info" (click)="viewFlights(user)">View Flights</button>
       </td>
     </tr>
   </tbody>
 </table>
+
+<!-- Display booked flights table -->
+<div *ngIf="selectedUser">
+  <h4>Booked Flights for {{ selectedUser.email }}</h4>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Flight ID</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Departure</th>
+        <th scope="col">Departure Date</th>
+        <th scope="col">Seat Class</th>
+        <th scope="col">Type of Ticket</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let flight of bookedFlights">
+        <td>{{ flight.id }}</td>
+        <td>{{ flight.destination }}</td>
+        <td>{{ flight.from }}</td>
+        <td>{{ flight.departureDate }}</td>
+        <td>{{ flight.seatClass }}</td>
+        <td>{{ flight.typeOfFlight }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -14,123 +14,23 @@
   >
     <div class="row mb-3" id="searchRow">
       <div class="col-md-2 p-0">
+
         <select
           name="TypeFlight"
           id="TypeFlight"
           class="form-select custom-select"
           [(ngModel)]="typeFlight"
         >
+
           <option value="" selected>Type Of Flight</option>
           <option value="One way">One Way</option>
           <option value="Round Trip">Round Trip</option>
         </select>
       </div>
-      <div class="col-md-3 p-0" id="passengersColumn">
-        <div class="dropdown" style="width: 100%">
-          <button
-            type="button"
-            class="btn btn-primary dropdown-toggle"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            data-bs-auto-close="outside"
-            class="form-select"
-          >
-            Number of Passengers: {{ totalPassengers }}
-          </button>
-          <div class="dropdown-menu p-4">
-            <div
-              class="row mb-3 d-flex justify-content-between align-content-center"
-            >
-              <div class="col-sm-3 text-center">
-                <label for="Adults">Adults:</label>
-              </div>
-              <div class="col-sm-6 d-flex justify-content-end">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary btn-sm"
-                  id="btn-decrease-adults"
-                  aria-label="Decrease number of adults"
-                >
-                  -
-                </button>
-                <div class="col-sm-3 text-center">
-                  <h4 id="numAdults">0</h4>
-                </div>
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary btn-sm"
-                  id="btn-increase-adults"
-                  aria-label="Increase number of adults"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-            <div
-              class="row mb-3 d-flex justify-content-between align-content-center"
-            >
-              <div class="col-sm-3 text-center">
-                <label for="children">Children:</label>
-              </div>
-              <div class="col-sm-6 d-flex justify-content-end">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary btn-sm"
-                  id="btn-decrease-children"
-                  aria-label="Decrease number of adults"
-                >
-                  -
-                </button>
-                <div class="col-sm-3 text-center">
-                  <h4 id="numChildren">0</h4>
-                </div>
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary btn-sm"
-                  id="btn-increase-children"
-                  aria-label="Increase number of adults"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-            <div
-              class="row mb-3 d-flex justify-content-between align-content-center"
-            >
-              <div class="col-sm-3 text-center">
-                <label for="todllers">Toddlers:</label>
-              </div>
-              <div class="col-sm-6 d-flex justify-content-end">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary btn-sm"
-                  id="btn-decrease-toddler"
-                  aria-label="Decrease number of adults"
-                >
-                  -
-                </button>
-                <div class="col-sm-3 text-center">
-                  <h4 id="numToddlers">0</h4>
-                </div>
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary btn-sm"
-                  id="btn-increase-toddler"
-                  aria-label="Increase number of adults"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
       <div class="col-md-2 p-0" id="seatClassColumn">
-        <select
-          name="seatClass"
-          id="seatClass"
-          class="form-select custom-select"
-        >
+        <select name="seatClass" id="seatClass" class="form-select custom-select" [(ngModel)]="seatClass">
+
           <option value="" selected>Seat Class</option>
           <option value="Economy">Economy</option>
           <option value="Premium-economy">Premium Economy</option>
@@ -158,6 +58,7 @@
             </svg>
           </span>
           <div class="form-floating p-0">
+
             <input
               type="text"
               class="form-control border-0"
@@ -166,6 +67,7 @@
               placeholder="From"
               [(ngModel)]="from"
             />
+
             <label for="floatingInput" style="font-size: 16px">From</label>
           </div>
         </div>
@@ -187,6 +89,7 @@
             </svg>
           </span>
           <div class="form-floating p-0">
+
             <input
               type="text"
               class="form-control border-0"
@@ -198,6 +101,7 @@
             <label for="floatingInput" style="font-size: 16px"
               >Destination</label
             >
+
           </div>
         </div>
       </div>
@@ -219,6 +123,7 @@
             </svg>
           </span>
           <input
+
             placeholder="Departure Date"
             type="text"
             class="form-control"
@@ -228,6 +133,8 @@
             id="departureDate"
             [(ngModel)]="departureDate"
           />
+
+  
         </div>
       </div>
       <div class="col-md-3 mb-3">
@@ -247,6 +154,7 @@
             </svg>
           </span>
           <input
+
             placeholder="Return Date"
             type="text"
             class="form-control"
@@ -256,11 +164,12 @@
             id="returnDate"
             [(ngModel)]="returnDate"
           />
+
         </div>
       </div>
     </div>
-
     <div class="button text-center">
+
       <button
         type="button"
         class="btn btn-primary"
@@ -268,6 +177,8 @@
       >
         Search Flight
       </button>
+
+
     </div>
   </div>
-</div>
+
