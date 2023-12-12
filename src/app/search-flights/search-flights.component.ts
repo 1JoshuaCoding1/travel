@@ -11,8 +11,8 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./search-flights.component.css']
 })
 export class SearchFlightsComponent {
-  totalPassengers: number = 0;
-  numAdults: number = 0;
+  totalPassengers: number = 1;
+  numAdults: number = 1;
   numChildren: number = 0;
   numToddler: number = 0;
   from:string = '';
@@ -27,6 +27,8 @@ export class SearchFlightsComponent {
 
   
   onSearchFlightsClick() {
+    this.from.toLowerCase;
+    this.destination.toLowerCase
     this.formattedDepartureDate = this.datePipe.transform(this.departureDate, 'dd MMMM yyyy') ?? '';
     this.formattedReturnDate = this.datePipe.transform(this.returnDate, 'dd MMMM yyyy') ?? '';
     this.router.navigate(['/view-flights'], {
@@ -58,7 +60,8 @@ export class SearchFlightsComponent {
   
 
   ngOnInit() {
-    
+    this.numAdults = 1;
+    this.typeFlight = "One way";
     document.addEventListener("DOMContentLoaded", () => {
       
       const typeFlight = document.getElementById("TypeFlight") as HTMLSelectElement;
@@ -73,6 +76,7 @@ export class SearchFlightsComponent {
         } else if (action === "decrease" && currentValue > 0) {
           countElement.innerText = (currentValue - 1).toString();
         }
+
         this.updateTotalPassengers();
       };
 
@@ -117,7 +121,7 @@ export class SearchFlightsComponent {
  
    updateTotalPassengers() {
 
-    const numAdults = parseInt(document.getElementById("numAdults")?.innerText || "0", 10);
+    const numAdults = parseInt(document.getElementById("numAdults")?.innerText || "1", 10);
     const numChildren = parseInt(document.getElementById("numChildren")?.innerText || "0", 10);
     const numToddlers = parseInt(document.getElementById("numToddlers")?.innerText || "0", 10);
     this.numAdults = numAdults;

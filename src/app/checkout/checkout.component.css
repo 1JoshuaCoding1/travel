@@ -1,0 +1,38 @@
+.section {
+    background-color: white;
+}
+
+* {
+    font-family: Comfortaa-Regular;
+}
+
+h1 {
+    font-size: 32px;
+    color: #254E58;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h4 {
+    font-size: medium;
+}
+
+h5 {
+    font-family: Comfortaa-Bold;
+    font-size: medium;
+}
+
+.btn-outline-danger {
+    margin-left: auto;
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+h6 {
+    color: #908F9A;
+}
