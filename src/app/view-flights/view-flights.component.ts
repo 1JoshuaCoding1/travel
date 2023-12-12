@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import * as firebase from 'firebase/compat';
-import { doc } from 'firebase/firestore';
+
 
 @Component({
   selector: 'app-view-flights',
@@ -39,9 +38,10 @@ export class ViewFlightsComponent implements OnInit {
         numAdults: this.searchData.numAdults,
         numChildren: this.searchData.numChildren,
         numToddler: this.searchData.numToddler,
+        adultPrice: this.adultPrice,
+        childPrice:this.childPrice,
+        infantPrice:this.infantPrice,
         totalPrice: flight.totalPrice
-        
-
       }
     });
   }
@@ -50,12 +50,9 @@ export class ViewFlightsComponent implements OnInit {
     const departureLocation = this.searchData.from;
     const destinationLocation = this.searchData.destination;
 
-    // Convert formatted departure date to a JavaScript Date object
-    const formattedDepartureDate = new Date(departureDate);
-
     // Query Firestore for flights with the same departure date and location
     this.firestore
-      .collection('flights', (ref) =>
+      .collection('flights', (ref:any) =>
         ref
           .where('departure', '==', departureLocation)
           .where('destination', '==', destinationLocation)

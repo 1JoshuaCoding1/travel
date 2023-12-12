@@ -1,1 +1,186 @@
-<p>{{ searchData.totalPrice }}</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8" *ngFor="let flight of chosenFlights; let i = index">
+      <h1>Flight Detail</h1>
+      <div class="section mb-3">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col text-uppercase mt-4">
+              <h2>
+                {{ flight.departure }}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-arrow-right"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                  />
+                </svg>
+                {{ flight.destination }}
+              </h2>
+            </div>
+
+            <div class="col ms-auto mt-4">
+              <div class="button-container">
+                <button
+                  type="button "
+                  class="btn btn-outline-danger"
+                  style="width: 100%"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-arrow-repeat"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"
+                    ></path>
+                    <path
+                      fill-rule="evenodd"
+                      d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"
+                    ></path>
+                  </svg>
+                  Change Flight
+                </button>
+              </div>
+            </div>
+          </div>
+          <hr class="m-3" style="border: dotted" />
+          <div class="row">
+            <div class="col-sm-3">
+              <h6>Airline:</h6>
+              <h5>
+                <img
+                  src="/assets/viewflights/cebu-pacific.png"
+                  alt=""
+                  style="padding-right: 10px"
+                />{{ flight.airline }}
+              </h5>
+              <h6>Flight ID:</h6>
+              <h5>{{ flight.flightID }}</h5>
+            </div>
+            <div class="col-sm-3">
+              <h6>Departure Date:</h6>
+              <h5 class="mb-3">{{ flight.departureDate }}</h5>
+              <h6>Departure Time:</h6>
+              <h5>{{ flight.departureTime }}</h5>
+            </div>
+            <div class="col-sm-4 text-center">
+              <h4 class="m-0">{{ flight.fromAirport }}</h4>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="20"
+                fill="currentColor"
+                class="bi bi-arrow-down"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1"
+                />
+              </svg>
+              <h4>{{ flight.destinationAirport }}</h4>
+            </div>
+            <div class="col">
+              <h6>Terms:</h6>
+              <h5 *ngFor="let term of flight.terms">{{ term }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <h1>Price Details</h1>
+      <div class="section mb-3">
+        <div class="container">
+          <div class="row">
+            <div class="col mt-3">
+              <div
+                class="accordion"
+                id="accordionExample"
+                *ngFor="let flight of chosenFlights; let i = index"
+              >
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button
+                      class="accordion-button"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#collapseOne"
+                      aria-expanded="true"
+                      aria-controls="collapseOne"
+                    >
+                      <h2 class="text-uppercase">
+                        {{ flight.departure }}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          class="bi bi-arrow-right"
+                          viewBox="0 0 16 16"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"
+                          />
+                        </svg>
+                        {{ flight.destination }}
+                      </h2>
+                    </button>
+                  </h2>
+                  <div
+                    id="collapseOne"
+                    class="accordion-collapse collapse show"
+                    data-bs-parent="#accordionExample"
+                  >
+                    <div class="accordion-body">
+                      <div class="row">
+                        <div class="col">
+                          <h5>{{ searchData.numAdults }}xAdult</h5>
+                        </div>
+                        <div class="col text-end">
+                          <h5>₱{{ searchData.adultPrice }}</h5>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <h5>{{ searchData.numChildren }}xChildren</h5>
+                        </div>
+                        <div class="col text-end">
+                          <h5>₱{{ searchData.childPrice }}</h5>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col">
+                          <h5>{{ searchData.numToddler }}xToddler</h5>
+                        </div>
+                        <div class="col text-end">
+                          <h5>₱{{ searchData.infantPrice }}</h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <h3 style="color: #908f9a">Total Price:</h3>
+            <h2>₱{{ allFlightsPrice }}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
