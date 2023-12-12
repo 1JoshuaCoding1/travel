@@ -18,7 +18,7 @@ export class CheckoutComponent implements OnInit {
   infantPrice: number = 0;
   adultPrice: number = 0;
   totalPrice: number = 0;
-
+  selectedPaymentMethod: string = 'Gcash';
   constructor(
     private route: ActivatedRoute,
     private firestore: AngularFirestore,
@@ -49,12 +49,6 @@ export class CheckoutComponent implements OnInit {
         this.chosenFlights = querySnapshot.docs.map((doc: any) => {
           const chosenFlightsData: any = doc.data();
 
-          chosenFlightsData.numAdults = this.searchData.numAdults;
-          chosenFlightsData.numChildren = this.searchData.numChildren;
-          chosenFlightsData.numToddler = this.searchData.numToddler;
-          chosenFlightsData.adultPrice = this.searchData.adultPrice;
-          chosenFlightsData.childPrice = this.searchData.childPrice;
-          chosenFlightsData.infantPrice = this.searchData.infantPrice;
           return chosenFlightsData;
         });
       });
@@ -86,7 +80,8 @@ export class CheckoutComponent implements OnInit {
       numToddler: this.searchData.numToddler,
       adultPrice: this.searchData.adultPrice,
       childPrice: this.searchData.childPrice,
-      infantPrice: this.searchData.infantPrice
+      infantPrice: this.searchData.infantPrice,
+      paymentMethod: this.selectedPaymentMethod
     };
 
     const flightDataWithDetails = { ...this.chosenFlights[0], ...additionalDetails };

@@ -37,3 +37,7 @@
     font-family: 'RobotoCondensed-BlackItalic';
     src: url('/assets/fonts/RobotoCondensed-BlackItalic.ttf');
 }
+
+body {
+    background-color: #908F9A;
+}
