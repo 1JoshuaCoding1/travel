@@ -31,7 +31,15 @@ export class SearchFlightsComponent {
 
   constructor(private router: Router,private datePipe: DatePipe) {}
 
-  
+
+
+  // ngOnDestroy() {
+  //   // Unsubscribe when the component is destroyed
+  //   if (this.authSubscription) {
+  //     this.authSubscription.unsubscribe();
+  //   }
+  // }
+
   onSearchFlightsClick() {
     this.from.toLowerCase();
     this.destination.toLowerCase();
