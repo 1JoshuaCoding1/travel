@@ -60,6 +60,7 @@
   <thead>
     <tr>
       <th scope="col">Flight ID</th>
+      <th scope="col">Airline</th>
       <th scope="col">Destination</th>
       <th scope="col">Departure</th>
       <th scope="col">Price</th>
@@ -75,7 +76,8 @@
   </thead>
   <tbody>
     <tr *ngFor="let flight of flights">
-      <td>{{ flight.id }}</td>
+      <td>{{ flight.flightID }}</td>
+      <td>{{ flight.airline }}</td>
       <td>{{ flight.destination }}</td>
       <td>{{ flight.departure }}</td>
       <td>{{ flight.price }}</td>
