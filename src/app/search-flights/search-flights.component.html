@@ -129,6 +129,7 @@
           name="seatClass"
           id="seatClass"
           class="form-select custom-select"
+          [(ngModel)]="seatClass"
         >
           <option value="" selected>Seat Class</option>
           <option value="Economy">Economy</option>
@@ -165,6 +166,7 @@
               placeholder="From"
               [(ngModel)]="from"
             />
+
             <label for="floatingInput" style="font-size: 16px">From</label>
           </div>
         </div>
@@ -258,7 +260,6 @@
         </div>
       </div>
     </div>
-
     <div class="button text-center">
       <button
         type="button"
