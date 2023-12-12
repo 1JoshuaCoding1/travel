@@ -11,7 +11,8 @@ export class AddFlightsComponent implements OnInit {
   destination: string = '';
   departure: string = '';
   price: string = '';
-  // Additional fields
+  airline: string = '';
+  flightID: string = '';
   baggage: string = '';
   cabinBaggage: string = '';
   departureDate: string = '';
@@ -35,6 +36,8 @@ export class AddFlightsComponent implements OnInit {
     }
 
     this.addFlights(
+      this.airline,
+      this.flightID,
       this.destination,
       this.departure,
       this.price,
@@ -49,6 +52,8 @@ export class AddFlightsComponent implements OnInit {
   }
 
   async addFlights(
+    airline: string,
+    flightID: string,
     destination: string,
     departure: string,
     price: string,
@@ -61,6 +66,8 @@ export class AddFlightsComponent implements OnInit {
     fromAirport: string
   ) {
     const flightData = {
+      airline,
+      flightID,
       destination,
       departure,
       price,
@@ -85,10 +92,12 @@ export class AddFlightsComponent implements OnInit {
   }
 
   clearForm() {
+    this.airline = '';
+    this.flightID = '';
     this.destination = '';
     this.departure = '';
     this.price = '';
-    // Clear additional fields
+ 
     this.baggage = '';
     this.cabinBaggage = '';
     this.departureDate = '';

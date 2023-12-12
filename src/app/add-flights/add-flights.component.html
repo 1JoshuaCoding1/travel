@@ -1,5 +1,13 @@
 <form #flightForm="ngForm" (ngSubmit)="onSubmit(flightForm)" class="row g-3">
   <div class="col-md-6">
+    <label for="airline" class="form-label">Airline</label>
+    <input type="text" class="form-control" id="airline" name="airline" [(ngModel)]="airline" required>
+  </div>
+  <div class="col-md-6">
+    <label for="flightID" class="form-label">Flight ID</label>
+    <input type="text" class="form-control" id="flightID" name="flightID" [(ngModel)]="flightID" required>
+  </div>
+  <div class="col-md-6">
     <label for="destination" class="form-label">Destination</label>
     <input type="text" class="form-control" id="destination" name="destination" [(ngModel)]="destination" required>
   </div>

@@ -11,12 +11,11 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-search-flights',
   standalone: true,
-  // Merge the imports array to remove duplication
+
   imports: [CommonModule, FormsModule],
   styleUrls: ['./search-flights.component.css'],
   templateUrl: './search-flights.component.html',
 })
-// ... (previous code)
 
 export class SearchFlightsComponent implements OnInit, OnDestroy {
   private authSubscription: Subscription | undefined;
