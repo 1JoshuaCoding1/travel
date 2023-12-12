@@ -1,13 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as firebase from 'firebase/compat';
+import { getFirestore, query, where, getDocs } from 'firebase/firestore';
 
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
-export class CheckoutComponent {
+export class CheckoutComponent implements OnInit{
   searchData:any;
+  firestore: any;
+  chosenFlights: any[] = [];
+  
+
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
@@ -17,16 +23,6 @@ export class CheckoutComponent {
     });
 
   }
-    
-    // this.route.queryParams.subscribe((params) => {
-    //   const flightId = params['flightId'];
-    //   const numAdults = params['numAdults'];
-    //   const numChildren = params['numChildren'];
-    //   const numToddler = params['numToddler'];
-    //   const totalPrice = params['totalPrice'];
-    //   console.log(totalPrice);
-    // });
-
- 
+  
   
 }

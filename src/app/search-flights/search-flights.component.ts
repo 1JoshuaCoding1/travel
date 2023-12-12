@@ -101,7 +101,7 @@ export class SearchFlightsComponent {
 
       function toggleReturnDate() {
         if (returnDateInput) {
-          returnDateInput.style.display = typeFlight.value === "Round-Trip" ? "block" : "none";
+          returnDateInput.style.display = typeFlight.value === "Round Trip" ? "block" : "none";
         }
         else{
 
