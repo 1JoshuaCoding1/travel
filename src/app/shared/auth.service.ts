@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-
+  private isLoggedIn = false;
   constructor(
     private fireauth: AngularFireAuth,
     private firestore: AngularFirestore,
@@ -31,7 +31,7 @@ export class AuthService {
         this.router.navigate(['/layout']);
       } else {
        
-        this.router.navigate(['/homepage']);
+        this.isLoggedIn = true;
       }
     }).catch(err => {
       // Handle login error
@@ -87,6 +87,15 @@ export class AuthService {
   getCurrentUser(): Observable<any> {
     return this.fireauth.authState;
   }
+  logout() {
+
+    this.isLoggedIn = false;
+  }
+
+  isAuthenticated(): boolean {
+    return this.isLoggedIn;
+  }
+
 }
 
 

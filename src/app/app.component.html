@@ -1,13 +1,19 @@
-<!-- <app-sidebar>
+<body>
+  <app-navbar *ngIf="showComponents()"></app-navbar>
+  <app-search-flights *ngIf="showComponents()"></app-search-flights>
+  <ng-container *ngIf="showComponents() == false; else loggedIn">
+    <!-- Display components for users who are not logged in -->
+    <app-login></app-login>
+  </ng-container>
 
-</app-sidebar> -->
-
-<!-- 
-
-<app-homepage> </app-homepage> -->
-
-<!-- app.component.html -->
-
-<div>
-  <router-outlet></router-outlet>
-</div>
+  <ng-template #loggedIn>
+    <router-outlet></router-outlet>
+    <!-- Display components for users who are logged in -->
+    <app-cards></app-cards>
+    <app-map></app-map>
+    <app-carousel></app-carousel>
+  </ng-template>
+</body>
+<footer>
+  <app-footer *ngIf="showComponents()"></app-footer>
+</footer>
