@@ -5,6 +5,7 @@ import * as firebase from 'firebase/compat';
 import {  getDocs, DocumentData, QuerySnapshot } from 'firebase/firestore';
 @Component({
   selector: 'app-checkout',
+
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
