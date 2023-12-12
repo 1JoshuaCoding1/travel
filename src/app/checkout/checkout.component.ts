@@ -17,7 +17,7 @@ export class CheckoutComponent implements OnInit{
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
+    this.route.queryParams.subscribe((params) => { 
       this.searchData = params;
       console.log(this.searchData.totalPrice);
     });
