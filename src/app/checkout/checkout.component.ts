@@ -24,6 +24,7 @@ export class CheckoutComponent implements OnInit{
     this.getChosenFlight();
   }
   getChosenFlight() {
+    console.log(this.searchData.adultPrice)
     const flightID = this.searchData.flightId;
   
     this.firestore
@@ -32,11 +33,12 @@ export class CheckoutComponent implements OnInit{
       .subscribe((querySnapshot:any) => {
         this.chosenFlights = querySnapshot.docs.map((doc:any) => {
           const chosenFlightsData: any = doc.data();
-          
+
           return chosenFlightsData;
         });
 
       });
+ 
       console.log(this.searchData.flightId);
       this.calculateTotalPrice();
   }
