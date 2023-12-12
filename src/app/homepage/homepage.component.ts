@@ -6,13 +6,15 @@
     import { MapComponent } from "../map/map.component";
     import { CarouselComponent } from "../carousel/carousel.component";
     import { FooterComponent } from "../footer/footer.component";
+    import { RouterModule } from '@angular/router';
+    import { FormsModule } from '@angular/forms';
 
     @Component({
         selector: 'app-homepage',
         standalone: true,
         templateUrl: './homepage.component.html',
         styleUrls: ['./homepage.component.css',],
-        imports: [CommonModule, NavbarComponent, SearchFlightsComponent, CardsComponent, MapComponent, CarouselComponent, FooterComponent]
+        imports: [CommonModule, NavbarComponent, SearchFlightsComponent, CardsComponent, MapComponent, CarouselComponent, FooterComponent, RouterModule]
     })
     export class HomepageComponent {
 
