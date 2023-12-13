@@ -25,7 +25,7 @@ export class AuthService {
     this.fireauth.signInWithEmailAndPassword(email, password).then(res => {
       console.log('Login successful:', res);
 
-      // Check if the logged-in user is admin
+      
       const isAdmin = this.isAdmin(res.user?.email);
 
       if (isAdmin) {
@@ -36,7 +36,7 @@ export class AuthService {
         localStorage.setItem('isLoggedIn', 'true');
       }
     }).catch(err => {
-      // Handle login error
+      
       console.error('Login error:', err);
       alert(err.message);
       this.router.navigate(['/login']);
